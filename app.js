@@ -16,6 +16,7 @@ const app = express();
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const profile = require('./routes/profile');
+const jams = require('./routes/jams');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/second-project");
@@ -52,6 +53,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/', auth);
 app.use('/profile', profile);
+app.use('/jams', jams);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

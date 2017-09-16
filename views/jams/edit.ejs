@@ -1,0 +1,35 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/jams/<% req.user._id %>/view">< Return to jams</a>
+  </p>
+
+    <h3>Edit Jam</h3>
+
+</div>
+
+
+<form action="/jams/<%= jam._id %>/edit" method="POST" class="form-group">
+
+  <div>
+    <label for="name">Edit Jam Name</label>
+    <input type="text" name="name" class="form-control" value="<%= jam.name %>">
+  </div>
+
+  <div>
+    <label for="place">Edit Jam Location</label>
+    <input type="address" name="place" class="form-control" value="<%= jam.place %>">
+  </div>
+
+  <div>
+    <label for="time">Edit Jam Date/Time</label>
+    <input type="datetime-local" name="time" class="form-control" value="<%= jam.time %>">
+  </div>
+
+  <button class="btn btn-primary btn-block">Save Changes</button>
+
+  <% if (typeof(message) !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+
+</form>

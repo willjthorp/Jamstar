@@ -67,7 +67,7 @@ profile.post('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => 
 });
 
 
-profile.get('/logout', (req, res, next) => {
+profile.get('/logout', ensureLoggedIn(), (req, res, next) => {
   req.logout();
   res.redirect("/");
 });

@@ -1,0 +1,23 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>My Jams</h3>
+
+</div>
+
+<div class="jams-container">
+
+<% for (i=0; i < jams.length; i++) { %>
+  <div class="jam-info">
+    <h3><%= jams[i].name %></h3>
+    <p><%= jams[i].place %></p>
+    <p><%= jams[i].time %></p>
+    <a href="/jams/<%= jams[i]._id %>/edit">Edit Jam</a><br>
+    <a href="/jams/<%= jams[i]._id %>/delete">Delete Jam</a>
+  </div>
+<% } %>
+
+</div>

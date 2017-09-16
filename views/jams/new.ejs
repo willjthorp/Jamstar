@@ -1,0 +1,35 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>Create new Jam</h3>
+
+</div>
+
+
+<form action="/jams/<%= req.user._id %>/view" method="POST" class="form-group">
+
+  <div>
+    <label for="name">Enter Jam Name</label>
+    <input type="text" name="name" class="form-control">
+  </div>
+
+  <div>
+    <label for="place">Enter Jam Location</label>
+    <input type="address" name="place" class="form-control">
+  </div>
+
+  <div>
+    <label for="time">Enter Jam Date/Time</label>
+    <input type="datetime-local" name="time" class="form-control">
+  </div>
+
+  <button class="btn btn-primary btn-block">Create Jam</button>
+
+  <% if (typeof(message) !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+
+</form>

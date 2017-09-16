@@ -5,6 +5,7 @@ const JamSchema = Schema({
   name: String,
   place: String,
   time: Date,
+  creator: String,
   // attendees: [Object.types.user_id]
 });
 
