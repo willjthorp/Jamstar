@@ -1,0 +1,31 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile/logout">Log out</a>
+  </p>
+
+    <h3>My Profile</h3>
+
+</div>
+
+<div class="profile-container">
+
+  <h2>Welcome to your profile</h2>
+
+  <p>
+    <a href="profile/logout">Log Out</a>
+  </p>
+
+  <p>
+    <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
+  </p>
+
+  <p>
+    <a href="profile/<%= req.user._id %>/instruments/edit">Edit My Instruments</a>
+  </p>
+
+  <p>
+    <a href="profile/<%= req.user._id %>/jams/new">Create a Jam</a>
+  </p>
+
+</div>

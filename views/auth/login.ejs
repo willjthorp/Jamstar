@@ -1,0 +1,30 @@
+
+
+<form action="/login" method="POST" class="form-group">
+  <h2>Login</h2>
+
+  <div>
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Enter your username...">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Enter your password...">
+  </div>
+
+  <button class="btn btn-primary btn-block">Sign in</button>
+
+  <a href="/login/facebook">Login With Facebook</a>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign Up</a>
+  </p>
+
+  <div>
+  <% if (typeof message != "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  </div>
+
+</form>

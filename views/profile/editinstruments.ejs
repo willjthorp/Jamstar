@@ -1,0 +1,60 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>Edit My Instruments</h3>
+
+</div>
+
+
+
+<form action="/profile/<%= user._id %>/instruments/edit/" method="POST" class="instrument-card-container">
+
+    <p>Select at least one instrument</p>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="piano"><img class="margin-right" src="/images/512/piano.png">Piano</label>
+      <input type="checkbox" name="piano" value="piano" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="electricguitar"><img src="/images/512/electric_guitar.png">Electric Guitar</label>
+      <input type="checkbox" name="electricguitar" value="electricguitar" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="vocals"><img class="margin-right" src="/images/512/microphone.png">Vocals</label>
+      <input type="checkbox" name="vocals" value="vocals" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="drums"><img class="margin-right" src="/images/512/bass_drum.png">Drum Kit</label>
+      <input type="checkbox" name="drums" value="drums" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="saxophone"><img class="margin-right" src="/images/512/saxophone.png">Saxophone</label>
+      <input type="checkbox" name="saxophone" value="saxophone" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="guitar"><img src="/images/512/guitar.png">Acoustic Guitar</label>
+      <input type="checkbox" name="guitar" value="guitar" class="checkbox">
+    </div>
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="trumpet"><img class="margin-right" src="/images/512/trumpet.png">Trumpet</label>
+      <input type="checkbox" name="trumpet" value="trumpet" class="checkbox">
+    </div>
+
+
+    <div class="instrument-card">
+      <label class="instrument-label" for="cello"><img class="margin-right" src="/images/512/cello.png">Cello</label>
+      <input type="checkbox" name="cello" value="cello" class="checkbox">
+    </div>
+
+  <button type="submit" class="btn btn-primary btn-block">Save</button>
+
+</form>
