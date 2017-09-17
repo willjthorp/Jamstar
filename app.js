@@ -17,6 +17,8 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const profile = require('./routes/profile');
 const jams = require('./routes/jams');
+const musicians = require('./routes/musicians');
+const api = require('./routes/api');
 
 // Mongoose configuration
 mongoose.connect("mongodb://localhost/second-project");
@@ -33,7 +35,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true,
   cookie: { maxAge: 600000 },
-}));
+}));  // Do I need the mongo store thing if I'm using passport?
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -54,6 +56,8 @@ app.use('/', index);
 app.use('/', auth);
 app.use('/profile', profile);
 app.use('/jams', jams);
+app.use('/musicians', musicians);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

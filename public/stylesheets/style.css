@@ -14,13 +14,19 @@ a {
   color: #00B7FF;
 }
 
+#map {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
 .form-control {
   margin-bottom: 20px;
 }
 
 .form-group {
   width: 600px;
-  margin: 100px auto 0 auto;
+  margin: 70px auto 0 auto;
   text-align: center;
   padding: 20px 90px 50px 90px;
   background-color: white;
@@ -35,7 +41,7 @@ a {
   font-size: 6rem;
 }
 
-p {
+p, label {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -44,7 +50,7 @@ p {
   background-color: black;
   opacity: 0.8;
   height: 60px;
-  position: absolute;
+  position: fixed;
 }
 
 .fa-star-o {

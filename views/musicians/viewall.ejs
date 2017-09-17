@@ -1,0 +1,24 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>Search Musicians</h3>
+
+</div>
+
+<div class="jams-container">
+
+<% for (i=0; i < musicians.length; i++) { %>
+  <div class="jam-info">
+    <h3><%= musicians[i].username %></h3>
+    <h3><%= musicians[i].city %></h3>
+    <div class="img-container">
+      <img src="<%= musicians[i].pic_path %>">
+    </div>
+    <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
+  </div>
+<% } %>
+
+</div>

@@ -12,9 +12,15 @@ jams.get('/new', ensureLoggedIn(), (req, res, next) => {
 // Save new jam
 jams.post('/:userId/view', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
+
+  let location = {
+		    type: 'Point',
+		    coordinates: [req.body.longitude, req.body.latitude]
+		  };
+
   const newJam = new Jam({
     name: req.body.name,
-    place: req.body.place,
+    location: location,
     time: req.body.time,
     creator: req.user._id
   });
@@ -35,7 +41,7 @@ jams.get('/:userId/view', ensureLoggedIn(), (req, res, next) => {
     Jam.find({"creator" : user._id}, (err, jams) => {
        if (err) { return next(err); }
        else {
-         res.render('jams/view', {req, jams});
+         res.render('jams/viewown', {req, jams});
        }
      });
    });
@@ -46,6 +52,7 @@ jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
   Jam.findById(jamId, (err, jam) => {
     if (err) {return next(err);}
+    console.log(req);
     res.render('jams/edit', {req, jam});
   });
 });
@@ -61,6 +68,33 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   Jam.findByIdAndUpdate(jamId, updates, (err, jam) => {
     if (err) {return next(err);}
     res.redirect(`/jams/${req.user._id}/view`);
+  });
+});
+
+// Delete a jam
+jams.get('/:jamId/delete', ensureLoggedIn(), (req, res, next) => {
+  const jamId = req.params.jamId;
+  Jam.findById(jamId, (err, jam) => {
+    console.log(JSON.stringify(jam.creator));
+    console.log(JSON.stringify(req.user._id));
+    if (err) {return next(err);}
+    else if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) {
+      console.log("working!");
+      Jam.findByIdAndRemove(jamId, (err, jam) => {
+        res.redirect(`/jams/${req.user._id}/view`);
+      });
+    } else {
+      console.log("nahhhhhh");
+      res.redirect(`/profile`);
+    }
+  });
+});
+
+// View all jams
+jams.get('/view', (req, res, next) => {
+  Jam.find({}).populate('creator', 'username').exec((err, jams) => {   // How does populate work???
+    if (err) {return next(err);}
+    res.render('jams/viewall', {req, jams});
   });
 });
 

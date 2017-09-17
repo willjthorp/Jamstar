@@ -1,6 +1,24 @@
-<form action="/profile/<%= user._id %>/edit/" method="POST" class="form-group">
+<div class="secondary-header">
 
-  <h2>Edit Profile</h2>
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>Edit Profile</h3>
+
+</div>
+
+<form action="/profile/<%= user._id %>/edit/" method="POST" class="form-group" enctype="multipart/form-data">
+
+  <div>
+    <label for="profile-pic">Upload Profile Picture</label>
+    <input type="file" name="profile-pic" id="trip-picture"> // Default value for profile pic??
+  </div>
+
+  <div>
+    <label for="city">Edit Current City</label>
+    <input type="text" class="form-control" name="city" id="city" value="<%= user.city %>" placeholder="Enter city here...">
+  </div>
 
   <div>
     <label for="password">Edit Password</label>

@@ -1,0 +1,28 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+
+    <h3>Search All Jams</h3>
+
+</div>
+
+<div class="jams-container">
+
+<% for (i=0; i < jams.length; i++) { %>
+  <div class="jam-info">
+    <h3><%= jams[i].name %></h3>
+    <p><%= jams[i].place %></p>
+    <p><%= jams[i].time %></p>
+    <p><%= jams[i].creator %></p>
+  </div>
+<% } %>
+
+<div id="map"></div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showJamMarkers"></script>

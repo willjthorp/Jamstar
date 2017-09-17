@@ -17,12 +17,15 @@
   </div>
 
   <div>
-    <label for="place">Enter Jam Location</label>
-    <input type="address" name="place" class="form-control">
+    <label for="place">Select Location</label>
+    <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
+    <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
   </div>
 
+  <div id="map"></div>
+
   <div>
-    <label for="time">Enter Jam Date/Time</label>
+    <label for="time">Enter Date/Time</label>
     <input type="datetime-local" name="time" class="form-control">
   </div>
 
@@ -33,3 +36,7 @@
   <% } %>
 
 </form>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=initMap"></script>

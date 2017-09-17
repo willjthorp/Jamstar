@@ -3,11 +3,13 @@ const Schema   = mongoose.Schema;
 
 const JamSchema = Schema({
   name: String,
-  place: String,
+  location: { type: { type: String }, coordinates: [Number] },
   time: Date,
-  creator: String,
+  creator: { type: Schema.Types.ObjectId, ref: 'User' },
   // attendees: [Object.types.user_id]
 });
+
+JamSchema.index({ location: '2dsphere' });
 
 const Jam = mongoose.model('Jam', JamSchema);
 
