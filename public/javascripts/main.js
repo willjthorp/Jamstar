@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  console.log("hello!");
     $('ul.tabs').tabs();
 
     $(".button-collapse").sideNav();
@@ -43,4 +44,23 @@ $('#jam-tab').on('click', function() {
       });
     }
   });
+});
+
+$('.input-field').on('change', function () {
+    var input, filter, ul, li, a, i;
+    input = $('#instfilter').val();
+    console.log(input);
+    $('.instruments-list').each(function(index) {
+      console.log($(this).text().indexOf(input));
+      if ($(this).text().indexOf(input) >= 0) {
+          $(this).parents().eq(4).show();
+      } else {
+          $(this).parents().eq(4).hide();
+      }
+    });
+});
+
+$('.filter-btn').on('click', function () {
+    $('.col').show();
+    Materialize.updateTextFields();
 });

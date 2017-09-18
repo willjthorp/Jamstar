@@ -3,12 +3,19 @@ const Schema   = mongoose.Schema;
 
 const JamSchema = Schema({
   name: String,
-  location: { type: { type: String }, coordinates: [Number] },
+  location: {
+    type: {
+      type: String
+    },
+    coordinates: [Number]
+  },
+  venueName: String,
   date: String,
   time: String,
+  description: String,
   pic_path: {type: String, default: '/images/jam-default.jpg'},
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
-  // attendees: [Object.types.user_id]
+  attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
 JamSchema.index({ location: '2dsphere' });

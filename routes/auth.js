@@ -34,6 +34,7 @@ auth.get("/login/facebook/callback", ensureLoggedOut(), passport.authenticate("f
   failureRedirect: "/"
 }));
 
+// Google sign up
 auth.get("/login/google", ensureLoggedOut(), passport.authenticate("google", {
   scope: ["https://www.googleapis.com/auth/plus.login",
           "https://www.googleapis.com/auth/plus.profile.emails.read"]

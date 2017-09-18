@@ -8,28 +8,40 @@
 
 </div>
 
+<div class="content-container">
 
 <form action="/jams/<%= jam._id %>/edit" method="POST" class="form-group">
 
-  <div>
+  <div class="input-field">
     <label for="name">Edit Jam Name</label>
-    <input type="text" name="name" class="form-control" value="<%= jam.name %>">
+    <input type="text" name="name" class="form-control validate" value="<%= jam.name %>" required>
   </div>
 
-  <div>
-    <label for="place">Edit Jam Location</label>
-    <input type="address" name="place" class="form-control" value="<%= jam.place %>">
+  <div class="input-field">
+    <label for="date">Click to select date</label>
+    <input type="text" name="date" class="datepicker" value="<%= jam.date %>" required>
   </div>
 
-  <div>
-    <label for="time">Edit Jam Date/Time</label>
-    <input type="datetime-local" name="time" class="form-control" value="<%= jam.time %>">
+  <div class="input-field">
+    <label for="time">Click to select time</label>
+    <input type="text" name="time" class="timepicker" value="<%= jam.time %>" required>
   </div>
 
-  <button class="btn btn-primary btn-block">Save Changes</button>
+
+  <div class="input-field col s12">
+    <textarea id="description" name="description" class="materialize-textarea" placeholder="Enter Jam Description (optional)"><%= jam.description %></textarea>
+  </div>
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Save
+    <i class="material-icons right">send</i>
+  </button>
 
   <% if (typeof(message) !== "undefined") { %>
     <div class="error-message"><%= message %></div>
   <% } %>
 
 </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

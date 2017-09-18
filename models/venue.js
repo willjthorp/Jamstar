@@ -3,6 +3,7 @@ const Schema   = mongoose.Schema;
 
 const VenueSchema = Schema({
   name: String,
+  address: String,
   location: { type: { type: String }, coordinates: [Number] },
   website: String,
   pic_path: {type: String, default: '/images/venue-default.jpg'},

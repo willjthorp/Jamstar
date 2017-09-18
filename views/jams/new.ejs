@@ -8,26 +8,55 @@
 
 <form action="/jams/<%= req.user._id %>/view" method="POST">
 
+<div class="content-container">
+
   <div class="row first-jam-input">
-    <div class="col s6">
-        <div id="jam-map"></div>
+    <div class="col s12 m6">
+      <div class="map-container">
+        <div id="jam-venues-map"></div>
+      </div>
     </div>
-    <div class="col s6">
+    <div class="col s12 m6">
       <div class="input-field">
         <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
         <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
       </div>
       <div class="container2">
         <p>Select a venue below or choose a point on the map</p>
+        <% for (i=0; i < venues.length; i++) { %>
+            <div class="card horizontal">
+              <div class="img-container valign-wrapper">
+                <img class="circle" src="<%= venues[i].pic_path %>">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h3><%= venues[i].name %></h3>
+                  <p><%= venues[i].address %></p>
+                  <a href="http://<%= venues[i].website %>" target="_blank"><%= venues[i].website %></p>
+                </div>
+                <div class="card-action">
+                  <a href="">View Info</a>
+                  <a href="">Send Request</a>
+                </div>
+              </div>
+            </div>
+        <% } %>
       </div>
     </div>
   </div>
 
-  <div class="second-jam-input">
+  <div class="second-jam-input form-group">
     <div class="input-field">
       <label for="name">Enter Jam Name</label>
       <input type="text" name="name" class="form-control">
     </div>
+
+    <div class="input-field">
+      <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
+      <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
+    </div>
+
+    <div id="map"></div>
 
     <div class="input-field">
       <label for="date">Click to select date</label>
@@ -48,9 +77,10 @@
     <div class="error-message"><%= message %></div>
   <% } %>
 
+</div>
+
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="/javascripts/maps.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showJamMarkers"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=initMap"></script>
 
 </form>

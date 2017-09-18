@@ -84,11 +84,14 @@ passport.use(new FbStrategy({
       return done(null, user);
     }
 
+    var emails = profile.emails;
+    var photos = profile.photos;
+
     const newUser = new User({
       facebookID: profile.id,
       username: profile.displayName,
-      email: profile.emails[0].value,
-      pic_path: profile.photos[0].value
+      email: emails && emails[0].value,
+      pic_path: photos && photos[0].value
     });
 
     newUser.save((err) => {

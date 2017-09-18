@@ -1,33 +1,65 @@
 <div class="secondary-header">
 
   <p>
-    <a href="/profile">< Return to profile</a>
+    <a href="/profile">
+      < Return to profile</a>
   </p>
 
-    <h3>Search Musicians</h3>
+
+
+  <h3>Search Musicians</h3>
 
 </div>
 
-<div class="container white z-depth-2">
+<div class="content-container">
 
-<% for (i=0; i < musicians.length; i++) { %>
-  <div class="col s12 m7">
-    <div class="card horizontal">
-      <div class="img-container valign-wrapper">
-        <img class="circle" src="<%= musicians[i].pic_path %>">
+  <div class="container white z-depth-2">
+
+    <div class="row">
+      <div class="input-field col s7 offset-s1">
+        <select class="filter-opt" id="instfilter">
+          <option value="1" disabled selected>Choose your option</option>
+          <option class="filter-opt" value="Piano">Piano</option>
+          <option class="filter-opt" value="Drums">Drums</option>
+          <option class="filter-opt" value="Guitar">Guitar</option>
+        </select>
+        <label>Materialize Select</label>
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <h3><%= musicians[i].username %></h3>
-          <p><%= musicians[i].city %></p>
-        </div>
-        <div class="card-action">
-          <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
-          <a href="/musicians/<%= musicians[i]._id %>">Send Request</a>
-        </div>
+
+      <div class="col s1 offset-s1">
+        <button class="btn filter-btn">Clear Filters</button>
       </div>
     </div>
+
+
+    <% for (i=0; i < musicians.length; i++) { %>
+      <div class="col s12 m7">
+        <div class="card horizontal">
+          <div class="img-container valign-wrapper">
+            <img class="circle" src="<%= musicians[i].pic_path %>">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h3><%= musicians[i].username %></h3>
+              <p>
+                <%= musicians[i].city %>
+              </p>
+              <p><span class="instruments-list">
+            <% for (j=0; j < musicians[i].instruments.length; j++) { %>
+              <%= musicians[i].instruments[j] %> |
+            <% } %></span>
+              </p>
+            </div>
+            <div class="card-action">
+              <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
+              <a href="/musicians/<%= musicians[i]._id %>">Send Request</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
   </div>
-<% } %>
 
 </div>

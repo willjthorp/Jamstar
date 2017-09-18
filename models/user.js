@@ -8,8 +8,11 @@ const UserSchema = Schema({
   city: String,
   facebookID: String,
   googleID: String,
-  instruments: [String],
-  pic_path: String
+  instruments: {
+    type: Array,
+    items: String
+  },
+  pic_path: String,
 });
 
 const User = mongoose.model('User', UserSchema);

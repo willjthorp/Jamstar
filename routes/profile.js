@@ -5,6 +5,8 @@ const multer         = require('multer');
 const upload         = multer({ dest: './public/uploads/' });
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+const instruments = require('../models/enums/instruments');
+
 // Render profile home page
 profile.get('/', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, musician) => {
@@ -17,7 +19,7 @@ profile.get('/', ensureLoggedIn(), (req, res, next) => {
 profile.get('/:userId/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
   if (req.user._id == userId) {
-    res.render('profile/edit', {req, user: req.user});
+    res.render('profile/edit', {req, user: req.user, instruments});
   } else {
     res.redirect('/profile');
   }
@@ -30,8 +32,10 @@ profile.post('/:userId/edit', ensureLoggedIn(), upload.single('profile-pic'), (r
     const updates = {
       city: req.body.city,
       email: req.body.email,
-      pic_path: `/uploads/${req.file.filename}`
     };
+    if (req.file) {
+      updates.pic_path = `/uploads/${req.file.filename}`;
+    }
     if (req.body.password) {
       updates.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt));
     }
@@ -50,7 +54,7 @@ profile.post('/:userId/edit', ensureLoggedIn(), upload.single('profile-pic'), (r
 profile.get('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
   if (req.user._id == userId) {
-    res.render('profile/editinstruments', {req, user: req.user});
+    res.render('profile/editinstruments', {req, user: req.user, instruments});
   } else {
     res.redirect('/profile');
   }
@@ -59,6 +63,11 @@ profile.get('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => {
 // Save edited intruments page
 profile.post('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
+
+  var instrumentsUpdate = {
+    instruments: req.body.instruments,
+  };
+
   if (req.user._id == userId) {
     User.findByIdAndUpdate(userId, instrumentsUpdate, (err, user) => {
       if (err) { return next(err); }

@@ -2,35 +2,38 @@ const express    = require('express');
 const jams       = express.Router();
 const Jam = require("../models/jam");
 const User = require("../models/user");
+const Venue = require("../models/venue");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 // Render new jam form
 jams.get('/new', ensureLoggedIn(), (req, res, next) => {
-  res.render('jams/new', {req});
+  Venue.find({}, (err, venues) => {
+    if (err) {
+      return next(err);
+    }
+    res.render('jams/new-location', {req, venues});
+  });
 });
 
 // Save new jam
-jams.post('/:userId/view', ensureLoggedIn(), (req, res, next) => {
-  const userId = req.params.userId;
+jams.post('/new', ensureLoggedIn(), (req, res, next) => {
 
   let location = {
-		    type: 'Point',
-		    coordinates: [req.body.longitude, req.body.latitude]
-		  };
+    type: 'Point',
+    coordinates: [req.body.longitude, req.body.latitude]
+  };
 
   const newJam = new Jam({
-    name: req.body.name,
+    venueName: req.body.venueName,
     location: location,
-    date: req.body.date,
-    time: req.body.time,
     creator: req.user._id
   });
 
-  newJam.save((err) => {
+  newJam.save((err, jam) => {
     if (err) {
       res.render("jams/new", { req, message: "Something went wrong" });
     } else {
-      res.redirect(`/jams/${userId}/view`);
+      res.redirect(`/jams/${jam.id}/edit`);
     }
   });
 });
@@ -39,10 +42,13 @@ jams.post('/:userId/view', ensureLoggedIn(), (req, res, next) => {
 jams.get('/:userId/view', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
   User.findById(userId, (err, user) => {
-    if (err) { return next(err); }
+    if (err) {
+      return next(err);
+    }
     Jam.find({"creator" : user._id}, (err, jams) => {
-       if (err) { return next(err); }
-       else {
+       if (err) {
+         return next(err);
+       } else {
          res.render('jams/viewown', {req, jams});
        }
      });
@@ -53,8 +59,9 @@ jams.get('/:userId/view', ensureLoggedIn(), (req, res, next) => {
 jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
   Jam.findById(jamId, (err, jam) => {
-    if (err) {return next(err);}
-    console.log(req);
+    if (err) {
+      return next(err);
+    }
     res.render('jams/edit', {req, jam});
   });
 });
@@ -64,8 +71,9 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
   let updates = {
     name: req.body.name,
-    place: req.body.place,
-    time: req.body.time
+    date: req.body.date,
+    time: req.body.time,
+    description: req.body.description
   };
   Jam.findByIdAndUpdate(jamId, updates, (err, jam) => {
     if (err) {return next(err);}
