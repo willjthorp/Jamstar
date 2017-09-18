@@ -8,16 +8,25 @@
 
 </div>
 
-<div class="jams-container">
+<div class="container white z-depth-2">
 
 <% for (i=0; i < musicians.length; i++) { %>
-  <div class="jam-info">
-    <h3><%= musicians[i].username %></h3>
-    <h3><%= musicians[i].city %></h3>
-    <div class="img-container">
-      <img src="<%= musicians[i].pic_path %>">
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="img-container valign-wrapper">
+        <img class="circle" src="<%= musicians[i].pic_path %>">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h3><%= musicians[i].username %></h3>
+          <p><%= musicians[i].city %></p>
+        </div>
+        <div class="card-action">
+          <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
+          <a href="/musicians/<%= musicians[i]._id %>">Send Request</a>
+        </div>
+      </div>
     </div>
-    <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
   </div>
 <% } %>
 

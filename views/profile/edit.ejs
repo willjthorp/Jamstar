@@ -10,10 +10,15 @@
 
 <form action="/profile/<%= user._id %>/edit/" method="POST" class="form-group" enctype="multipart/form-data">
 
-  <div>
-    <label for="profile-pic">Upload Profile Picture</label>
-    <input type="file" name="profile-pic" id="trip-picture"> // Default value for profile pic??
-  </div>
+  <div class="file-field input-field">
+      <div class="btn">
+        <span>Upload Profile Picture</span>
+        <input type="file" name="profile-pic" id="trip-picture">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Select photo">
+      </div>
+    </div>
 
   <div>
     <label for="city">Edit Current City</label>
@@ -30,11 +35,8 @@
     <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>">
   </div>
 
-  <button type="submit" class="btn btn-primary btn-block">Submit</button>
-
-  <p>
-    <a href="/profile">Return to profile</a>
-  </p>
-
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 
 </form>

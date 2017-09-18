@@ -1,22 +1,19 @@
 <div class="secondary-header">
-
   <p>
     <a href="/profile">< Return to profile</a>
   </p>
-
-    <h3>Create new Jam</h3>
-
+  <h3>Create New Jam</h3>
 </div>
 
 
 <form action="/jams/<%= req.user._id %>/view" method="POST" class="form-group">
 
-  <div>
+  <div class="input-field">
     <label for="name">Enter Jam Name</label>
     <input type="text" name="name" class="form-control">
   </div>
 
-  <div>
+  <div class="input-field">
     <label for="place">Select Location</label>
     <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
     <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
@@ -24,12 +21,19 @@
 
   <div id="map"></div>
 
-  <div>
-    <label for="time">Enter Date/Time</label>
-    <input type="datetime-local" name="time" class="form-control">
+  <div class="input-field">
+    <label for="date">Click to select date</label>
+    <input type="text" class="datepicker">
   </div>
 
-  <button class="btn btn-primary btn-block">Create Jam</button>
+  <div class="input-field">
+    <label for="time">Click to select time</label>
+    <input type="text" class="timepicker">
+  </div>
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 
   <% if (typeof(message) !== "undefined") { %>
     <div class="error-message"><%= message %></div>
@@ -37,6 +41,5 @@
 
 </form>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/maps.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=initMap"></script>

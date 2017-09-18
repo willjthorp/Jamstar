@@ -5,18 +5,27 @@
     <title>Jamstar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Montserrat|Questrial|Pacifico|Raleway:900" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-
-          <a class="navbar-brand" href="/"><h1><i class="fa fa-star-o" aria-hidden="true"></i>Jamstar</h1></a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo valign-wrapper"><i class="fa fa-star-o" aria-hidden="true"></i>Jamstar</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <% if (!req.user) { %>
+            <li><a href="/login"><p class="log-in">Login</p></a></li>
+            <li><a href="/signup"><p class="sign-up">Sign Up</p></a></li>
+          <% } else { %>
+            <li><a href="/profile"><p class="my-account">My Account</p></a></li>
+          <% } %>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
           <% if (!req.user) { %>
             <li><a href="/login"><p class="log-in">Login</p></a></li>
             <li><a href="/signup"><p class="sign-up">Sign Up</p></a></li>
@@ -26,6 +35,8 @@
         </ul>
       </div>
     </nav>
+
       <%- body -%>
+      <script type="text/javascript" src="/javascripts/main.js"></script>
   </body>
 </html>

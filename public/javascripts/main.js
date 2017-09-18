@@ -1,179 +1,44 @@
-//
-// $('.instrument-label').on('click', function() {
-//   $(this).toggleClass('selected');
-//   var instrumentsArray = [];
-//   $('.instrument-label').each(function(i) {
-//     if ($(this).hasClass('selected')) {
-//       instrumentsArray.push($(this).attr('for'));
-//     }
-//   });
-//   const instrumentsUpdate = {
-//     instruments: instrumentsArray
-//   };
-//   $.ajax({
-//     method:  'POST',
-//     url:     'http://localhost:3000/profile/59bbdc4ab5a0e8056b15d362/instruments/edit',
-//     data:    instrumentsUpdate,
-//     success: function(response) {
-//       console.log(response);
-//     },
-//     error:  function(response) {
-//       console.log(response);
-//     }
-//   });
-// });
+$(document).ready(function(){
+    $('ul.tabs').tabs();
 
+    $(".button-collapse").sideNav();
 
-  var map;
-  var markers = [];
+    $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: true // Close upon selecting a date,
+  });
 
-  function initMap() {
-
-    var ironhackBCN = {
-        lat: 31.3977381,
-        lng: 2.190471916
-      };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: ironhackBCN
-      }
-    );
-
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const user_location = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      // Center map with user location
-      map.setCenter(user_location);
-
-      // Add a marker for your user location
-      var yourPosition = new google.maps.Marker({
-        position: {
-          lat: user_location.lat,
-          lng: user_location.lng
-        },
-        map: map,
-        title: "You are here"
-      });
-      markers.push(yourPosition);
-              console.log(markers);
-
-    }, function () {
-        console.log('Error in the geolocation service.');
-      });
-    } else {
-        console.log('Browser does not support geolocation.');
-    }
-
-    // This event listener will call addMarker() when the map is clicked.
-    google.maps.event.addListener(map, 'click', function( event ){
-      clearMarkers();
-      markers = [];
-      var marker = new google.maps.Marker({
-          position: {lat: event.latLng.lat(), lng: event.latLng.lng()},
-          map: map
-        });
-        markers.push(marker);
-          document.getElementById('latitude').value=event.latLng.lat();
-          document.getElementById('longitude').value=event.latLng.lng();
+    $('.timepicker').pickatime({
+      default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+      fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+      twelvehour: false, // Use AM/PM or 24-hour format
+      donetext: 'OK', // text for done-button
+      cleartext: 'Clear', // text for clear-button
+      canceltext: 'Cancel', // Text for cancel-button
+      autoclose: true, // automatic close timepicker
+      ampmclickable: true, // make AM PM clickable
+      aftershow: function(){} //Function for after opening timepicker
     });
-  }
-
-  // Adds a marker to the map and push to the array.
-  function addMarker(location) {
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-    clearMarkers();
-    markers = [];
-    markers.push(marker);
-  }
-
-  // Sets the map on all markers in the array.
-  function setMapOnAll(map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
-
-  // Removes the markers from the map, but keeps them in the array.
-  function clearMarkers() {
-    setMapOnAll(null);
-  }
-
-  // Shows any markers currently in the array.
-  function showMarkers() {
-    setMapOnAll(map);
-  }
-
-  // Deletes all markers in the array by removing references to them.
-  function deleteMarkers() {
-    clearMarkers();
-    markers = [];
-  }
+});
 
 
-  function setMarkers(map, markers) {
-        for (var i = 0; i < markers.length; i++) {
-            // var sites = markers[i];
-            // var siteLatLng = new google.maps.LatLng(sites[1], sites[2]);
-            var marker = new google.maps.Marker({
-                position: {lat: markers[i].location.coordinates[1], lng: markers[i].location.coordinates[0]},
-                map: map,
-                title: markers[i].name,
-                // zIndex: sites[3],
-                html: markers[i].name
-              });
-            var contentString = "Some content";
-            google.maps.event.addListener(marker, "click", function () {
-                infowindow.setContent(this.html);
-                infowindow.open(map, this);
-            });
+$('#jam-tab').on('click', function() {
+  $.ajax({
+    url: 'http://localhost:3000/api/jams',
+    method: 'GET',
+    success: function(response) {
+      for (let i=1; i < response.length; i++) {
+        if ($('.jams-container').length === 0) {
+          $('.jams-container').append($('.jams-info').eq(0).clone());
         }
-    }
-
-
-
-  function showJamMarkers() {
-    var ironhackBCN = {
-        lat: 31.3977381,
-        lng: 2.190471916
-      };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: ironhackBCN
       }
-    );
-
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const user_location = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      // Center map with user location
-      map.setCenter(user_location);
-
-    }, function () {
-        console.log('Error in the geolocation service.');
+      $('.jam-name').each(function(index) {
+        $(this).text(response[index].name);
       });
     }
-
-
-
-    $.ajax({
-      url: 'http://localhost:3000/api',
-      method: 'GET',
-      success: function(response) {
-        var markers = [];
-        setMarkers(map, response);
-        infowindow = new google.maps.InfoWindow({
-              content: "loading..."
-          });
-      }
-    });
-
-  }
+  });
+});

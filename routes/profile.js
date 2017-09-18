@@ -7,7 +7,10 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 // Render profile home page
 profile.get('/', ensureLoggedIn(), (req, res, next) => {
-  res.render('profile/home', {req});
+  User.findById(req.user._id, (err, musician) => {
+    if (err) {return next(err);}
+    res.render('profile/home', {req, musician});
+  });
 });
 
 // Render edit profile page
