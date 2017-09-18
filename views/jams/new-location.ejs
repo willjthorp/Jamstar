@@ -13,27 +13,14 @@
     <div id="jam-location-map"></div>
   </div>
   <div class="col s6">
-    <% for (i=0; i < jams.length; i++) { %>
-      <div class="col s12 m7">
-        <div class="card horizontal">
-          <div class="img-container valign-wrapper">
-            <img class="circle" src="<%= jams[i].pic_path %>">
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <h3><%= jams[i].name %></h3>
-              <p><%= jams[i].city %></p>
-              <p><%= jams[i].time %></p>
-              <p><%= jams[i].creator %></p>
-            </div>
-            <div class="card-action">
-              <a href="">View Info</a>
-              <a href="">Send Request</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% } %>
+    <div class="input-field">
+      <label for="place">Select Location</label>
+      <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
+      <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
+    </div>
+    <div class="container">
+      hello
+    </div>
   </div>
 </div>
 

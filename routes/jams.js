@@ -21,9 +21,11 @@ jams.post('/:userId/view', ensureLoggedIn(), (req, res, next) => {
   const newJam = new Jam({
     name: req.body.name,
     location: location,
+    date: req.body.date,
     time: req.body.time,
     creator: req.user._id
   });
+
   newJam.save((err) => {
     if (err) {
       res.render("jams/new", { req, message: "Something went wrong" });

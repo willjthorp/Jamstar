@@ -243,3 +243,11 @@ img {
 .card, .horizontal {
   width: 100%;
 }
+
+.second-jam-input {
+  display: none;
+}
+
+.container2 {
+  padding: 10px 30px;
+}

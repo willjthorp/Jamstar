@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
@@ -73,7 +74,7 @@ passport.use(new FbStrategy({
   clientID: "271368853375246",
   clientSecret: "0d30cbc5369dbe9b5395b28206d43211",
   callbackURL: "/login/facebook/callback",
-  profileFields: ['id', 'displayName', 'name', 'photos']
+  profileFields: ['id', 'displayName', 'name', 'photos', 'emails']
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({ facebookID: profile.id }, (err, user) => {
     if (err) {
@@ -86,8 +87,41 @@ passport.use(new FbStrategy({
     const newUser = new User({
       facebookID: profile.id,
       username: profile.displayName,
+      email: profile.emails[0].value,
       pic_path: profile.photos[0].value
     });
+
+    newUser.save((err) => {
+      if (err) {
+        return done(err);
+      }
+      done(null, newUser);
+    });
+  });
+
+}));
+
+passport.use(new GoogleStrategy({
+  clientID: "1050090082346-botdg9nkbsioher4hkqaeagvh7pe6f4u.apps.googleusercontent.com",
+  clientSecret: "AwxTSYVCRHpvI9xQcS3ux1X2",
+  callbackURL: "/login/google/callback",
+  profileFields: ['id', 'displayName', 'name', 'photos', 'emails']
+}, (accessToken, refreshToken, profile, done) => {
+  User.findOne({ googleID: profile.id }, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = new User({
+      googleID: profile.id,
+      username: profile.displayName,
+      email: profile.emails[0].value,
+      pic_path: profile.photos[0].value
+    });
+    console.log(newUser);
 
     newUser.save((err) => {
       if (err) {

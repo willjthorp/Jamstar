@@ -28,10 +28,20 @@ auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
 }));
 
 // Facebook signup
-auth.get("/login/facebook", passport.authenticate("facebook"));
-auth.get("/login/facebook/callback", passport.authenticate("facebook", {
+auth.get("/login/facebook", ensureLoggedOut(), passport.authenticate("facebook"));
+auth.get("/login/facebook/callback", ensureLoggedOut(), passport.authenticate("facebook", {
   successRedirect: "/profile",
   failureRedirect: "/"
+}));
+
+auth.get("/login/google", ensureLoggedOut(), passport.authenticate("google", {
+  scope: ["https://www.googleapis.com/auth/plus.login",
+          "https://www.googleapis.com/auth/plus.profile.emails.read"]
+}));
+
+auth.get("/login/google/callback", ensureLoggedOut(), passport.authenticate("google", {
+  failureRedirect: "/",
+  successRedirect: "/profile"
 }));
 
 module.exports = auth;

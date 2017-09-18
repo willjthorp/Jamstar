@@ -7,6 +7,7 @@ const UserSchema = Schema({
   password: String,
   city: String,
   facebookID: String,
+  googleID: String,
   instruments: [String],
   pic_path: String
 });

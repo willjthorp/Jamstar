@@ -6,40 +6,51 @@
 </div>
 
 
-<form action="/jams/<%= req.user._id %>/view" method="POST" class="form-group">
+<form action="/jams/<%= req.user._id %>/view" method="POST">
 
-  <div class="input-field">
-    <label for="name">Enter Jam Name</label>
-    <input type="text" name="name" class="form-control">
+  <div class="row first-jam-input">
+    <div class="col s6">
+        <div id="jam-map"></div>
+    </div>
+    <div class="col s6">
+      <div class="input-field">
+        <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
+        <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
+      </div>
+      <div class="container2">
+        <p>Select a venue below or choose a point on the map</p>
+      </div>
+    </div>
   </div>
 
-  <div class="input-field">
-    <label for="place">Select Location</label>
-    <input type="hidden" name="latitude" id="latitude" placeholder="Latitude" class="form-control">
-    <input type="hidden" name="longitude" id="longitude" placeholder="Longitude" class="form-control">
+  <div class="second-jam-input">
+    <div class="input-field">
+      <label for="name">Enter Jam Name</label>
+      <input type="text" name="name" class="form-control">
+    </div>
+
+    <div class="input-field">
+      <label for="date">Click to select date</label>
+      <input type="text" name="date" class="datepicker">
+    </div>
+
+    <div class="input-field">
+      <label for="time">Click to select time</label>
+      <input type="text" name="time" class="timepicker">
+    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
   </div>
-
-  <div id="map"></div>
-
-  <div class="input-field">
-    <label for="date">Click to select date</label>
-    <input type="text" class="datepicker">
-  </div>
-
-  <div class="input-field">
-    <label for="time">Click to select time</label>
-    <input type="text" class="timepicker">
-  </div>
-
-  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-  </button>
 
   <% if (typeof(message) !== "undefined") { %>
     <div class="error-message"><%= message %></div>
   <% } %>
 
-</form>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/javascripts/maps.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showJamMarkers"></script>
 
-<script type="text/javascript" src="/javascripts/maps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=initMap"></script>
+
+</form>

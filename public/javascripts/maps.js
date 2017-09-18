@@ -115,7 +115,7 @@
         lng: 2.190471916
       };
     var map = new google.maps.Map(document.getElementById('jam-map'), {
-        zoom: 15,
+        zoom: 13,
         center: ironhackBCN
       }
     );
@@ -136,6 +136,53 @@
 
     $.ajax({
       url: 'http://localhost:3000/api/jams',
+      method: 'GET',
+      success: function(response) {
+        var markers = [];
+        setMarkers(map, response);
+        infowindow = new google.maps.InfoWindow({
+              content: "loading..."
+          });
+      }
+    });
+
+    google.maps.event.addListener(map, "click", function(event) {
+      infowindow.close();
+    });
+
+  }
+
+
+
+
+  function showJamVenues() {
+    var ironhackBCN = {
+        lat: 31.3977381,
+        lng: 2.190471916
+      };
+
+    var map = new google.maps.Map(document.getElementById('jam-venues-map'), {
+        zoom: 13,
+        center: ironhackBCN
+      }
+    );
+
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const user_location = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      // Center map with user location
+      map.setCenter(user_location);
+
+    }, function () {
+        console.log('Error in the geolocation service.');
+      });
+    }
+
+    $.ajax({
+      url: 'http://localhost:3000/api/venues',
       method: 'GET',
       success: function(response) {
         var markers = [];

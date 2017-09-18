@@ -4,7 +4,8 @@ const Schema   = mongoose.Schema;
 const JamSchema = Schema({
   name: String,
   location: { type: { type: String }, coordinates: [Number] },
-  time: Date,
+  date: String,
+  time: String,
   pic_path: {type: String, default: '/images/jam-default.jpg'},
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
   // attendees: [Object.types.user_id]
