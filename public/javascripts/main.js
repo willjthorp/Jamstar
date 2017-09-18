@@ -31,8 +31,8 @@ $('#jam-tab').on('click', function() {
     url: 'http://localhost:3000/api/jams',
     method: 'GET',
     success: function(response) {
-      for (let i=1; i < response.length; i++) {
-        if ($('.jams-container').length === 0) {
+      if ($('.jams-info').length === 1) {
+        for (let i=1; i < response.length; i++) {
           $('.jams-container').append($('.jams-info').eq(0).clone());
         }
       }
