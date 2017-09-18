@@ -114,7 +114,7 @@
         lat: 31.3977381,
         lng: 2.190471916
       };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('jam-map'), {
         zoom: 15,
         center: ironhackBCN
       }

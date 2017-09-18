@@ -1,0 +1,40 @@
+<div class="secondary-header">
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+  <h3>Create New Group</h3>
+</div>
+
+
+<form action="/groups/<%= req.user._id %>/view" method="POST" class="form-group">
+
+  <div class="input-field">
+    <label for="name">Enter Group Name</label>
+    <input type="text" name="name" class="form-control" placeholder="Enter name...">
+  </div>
+
+  <div class="input-field">
+    <label for="members">Select Group Members</label>
+    <input type="text" name="members" id="members" placeholder="Members..." class="form-control">
+  </div>
+
+  <div class="input-field col s12">
+    <select multiple>
+      <option value="" disabled selected>Choose your genre</option>
+      <option value="1">Rock</option>
+      <option value="2">Pop</option>
+      <option value="3">Reggae</option>
+    </select>
+    <label>Select Genre</label>
+  </div>
+
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+
+  <% if (typeof(message) !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+
+</form>

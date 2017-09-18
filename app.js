@@ -18,6 +18,7 @@ const auth = require('./routes/auth');
 const profile = require('./routes/profile');
 const jams = require('./routes/jams');
 const musicians = require('./routes/musicians');
+const groups = require('./routes/groups');
 const api = require('./routes/api');
 
 // Mongoose configuration
@@ -57,6 +58,7 @@ app.use('/', auth);
 app.use('/profile', profile);
 app.use('/jams', jams);
 app.use('/musicians', musicians);
+app.use('/groups', groups);
 app.use('/api', api);
 
 // catch 404 and forward to error handler

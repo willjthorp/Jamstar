@@ -5,15 +5,22 @@
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #f0f0f0;
-  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  background-color: #f7f7f7;
+}
+
+#map, #jam-map {
+  width: 100%;
+  margin-bottom: 30px;
+  position: fixed;
 }
 
 #map {
-  width: 100%;
   height: 400px;
-  margin-bottom: 30px;
+}
+
+#jam-map {
+  height: 85vh;
 }
 
 .form-control {
@@ -31,19 +38,23 @@ body {
   border: 1px solid #ebebeb
 }
 
+.form-group p {
+  text-align: center;
+  margin: 15px 0;
+}
+
 .form-group h2 {
   font-family: 'Pacifico', cursive;
   margin-bottom: 60px;
-  font-size: 6rem;
+  font-size: 4.5rem;
 }
 
 p, label {
   font-family: 'Montserrat', sans-serif;
 }
 
-nav {
-  background-color: black;
-  opacity: 0.8;
+nav, .nav-wrapper {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .nav-wrapper {
@@ -61,7 +72,13 @@ nav .brand-logo {
   font-family: 'Comfortaa', cursive;
   color: white;
   font-size: 2.4rem;
+  opacity: 1;
 }
+
+.row, .col {
+  padding: 0 !important;
+}
+
 
 .secondary-header {
   height: 60px;
@@ -94,7 +111,7 @@ nav .brand-logo {
 }
 
 .btn {
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .my-account {
@@ -102,6 +119,8 @@ nav .brand-logo {
 }
 
 .home-container {
+  position: absolute;
+  top: 0;
   background-image: url(https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb);
   background-position: top;
   background-repeat: no-repeat;
@@ -115,7 +134,7 @@ nav .brand-logo {
   position: relative;
   top: 150px;
   font-family: 'Raleway', sans-serif;
-  font-size: 8rem;
+  font-size: 5rem;
   width: 60%;
   color: white;
   margin: 0 auto;
@@ -200,7 +219,9 @@ nav .brand-logo {
 }
 
 .profile-container {
-  padding: 20px 0;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
 .img-container {
@@ -217,4 +238,8 @@ img {
 
 .section p {
   font-size: 3rem;
+}
+
+.card, .horizontal {
+  width: 100%;
 }

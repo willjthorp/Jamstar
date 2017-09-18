@@ -75,4 +75,17 @@ profile.get('/logout', ensureLoggedIn(), (req, res, next) => {
   res.redirect("/");
 });
 
+// Delete account
+profile.get('/:userId/delete', ensureLoggedIn(), (req, res, next) => {
+  const userId = req.params.userId;
+  if (req.user._id == userId) {
+    User.findByIdAndRemove(userId, (err, user) => {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  } else {
+    res.redirect('/profile');
+  }
+});
+
 module.exports = profile;

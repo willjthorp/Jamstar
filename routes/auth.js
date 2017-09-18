@@ -20,7 +20,7 @@ auth.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('auth/signup', { message: req.flash('error'), req});
 });
 
-// Save new user ingo
+// Save new user info
 auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/profile',
   failureRedirect : '/signup',
@@ -28,9 +28,9 @@ auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
 }));
 
 // Facebook signup
-auth.get("/facebook", passport.authenticate("facebook"));
-auth.get("/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/private",
+auth.get("/login/facebook", passport.authenticate("facebook"));
+auth.get("/login/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/profile",
   failureRedirect: "/"
 }));
 

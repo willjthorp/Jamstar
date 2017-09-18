@@ -21,11 +21,10 @@
 
       <div id="test1" class="col s12">
         <div class="divider"></div>
-        <div class="container profile-container">
+        <div class="profile-container">
           <div class="img-container">
             <img class="circle" src="<%= musician.pic_path %>">
           </div>
-          <div class="divider"></div>
             <div class="section">
               <h5>Name:</h5>
               <p><%= musician.username %></p>
@@ -100,10 +99,22 @@
         <p>
           <a href="/musicians/view">Search Musicians</a>
         </p>
+
+        <p>
+          <a href="/groups/new">Create Group</a>
+        </p>
+
+        <p>
+          <a href="/groups/<%= req.user._id %>/view">View my groups</a>
+        </p>
+
         </div>
       </div>
     </div>
 
+    <p>
+      <a href="/profile/<%= req.user._id %>/delete">Delete Account</a>
+    </p>
 
   </div>
 
