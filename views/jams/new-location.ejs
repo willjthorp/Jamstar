@@ -28,10 +28,9 @@
                 <div class="card-content">
                   <h3><%= venues[i].name %></h3>
                   <p><%= venues[i].address %></p>
-                  <a href="http://<%= venues[i].website %>" target="_blank"><%= venues[i].website %></p>
+                  <a href="http://<%= venues[i].website %>" target="_blank"><%= venues[i].website %></a>
                 </div>
                 <div class="card-action">
-                  <a href="">View Info</a>
                   <form action="/jams/new" method="POST">
                     <input type="hidden" name="latitude" id="latitude" value="<%= venues[i].location.coordinates[0] %>" class="form-control">
                     <input type="hidden" name="longitude" id="longitude" value="<%= venues[i].location.coordinates[1] %>" class="form-control">

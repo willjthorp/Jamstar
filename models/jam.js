@@ -9,13 +9,14 @@ const JamSchema = Schema({
     },
     coordinates: [Number]
   },
-  venueName: String,
+  venue: { type: Schema.Types.ObjectId, ref: 'Venue' },
   date: String,
   time: String,
   description: String,
   pic_path: {type: String, default: '/images/jam-default.jpg'},
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
-  attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  invited: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
 JamSchema.index({ location: '2dsphere' });

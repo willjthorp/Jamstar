@@ -1,0 +1,59 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< My jams</a>
+  </p>
+
+    <h3>Jam info</h3>
+
+</div>
+
+<div class="content-container">
+
+  <div class="top-container">
+    <div class="img-container-large">
+      <img class="circle" src="<%= jam.pic_path %>">
+    </div>
+    <h2><%= jam.name.toUpperCase() %></h2>
+    <h3><%= jam.date %></h3>
+    <h3><%= jam.time %></h3>
+    <div class="links">
+      <a href="">Edit</a> | <a href="">Delete</a>
+    </div>
+  </div>
+
+
+  <div class="bottom-container">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="bottom-left-container">
+          <h2>Venue info:</h2>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Name:</h5>
+            <p>Venue 1</p>
+          </div>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Address:</h5>
+            <p>Some address</p>
+          </div>
+          <div class="divider"></div>
+          <div class="section">
+            <h5>Website:</h5>
+            <p>some website</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="bottom-right-container">
+          <h2>Attending:</h2>
+          <div class="divider"></div>
+          <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

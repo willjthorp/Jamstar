@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require("../models/user");
+const Jam = require("../models/jam");
 const profile = express.Router();
 const multer         = require('multer');
 const upload         = multer({ dest: './public/uploads/' });
@@ -11,6 +12,7 @@ const instruments = require('../models/enums/instruments');
 profile.get('/', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, musician) => {
     if (err) {return next(err);}
+    console.log(musician);
     res.render('profile/home', {req, musician});
   });
 });
@@ -77,6 +79,19 @@ profile.post('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => 
     res.redirect('/profile');
   }
 });
+
+
+// View users jams
+profile.get('/myjams', ensureLoggedIn(), (req, res, next) => {
+  Jam.find({"creator" : req.user._id}, (err, jams) => {
+     if (err) {
+       return next(err);
+     } else {
+       res.render('jams/viewown', {req, jams});
+     }
+   });
+});
+
 
 // Logout
 profile.get('/logout', ensureLoggedIn(), (req, res, next) => {

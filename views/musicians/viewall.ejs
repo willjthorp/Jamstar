@@ -51,8 +51,14 @@
               </p>
             </div>
             <div class="card-action">
+              <% if (typeof jam !== undefined) { %>
+                <p>
+                  <input type="checkbox" id="chkbx_<%= musicians[i]._id %>" />
+                  <label for="chkbx_<%= musicians[i]._id %>">Invite</label>
+                </p>
+              <% } %>
               <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
-              <a href="/musicians/<%= musicians[i]._id %>">Send Request</a>
+
             </div>
           </div>
         </div>

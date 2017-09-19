@@ -5,119 +5,91 @@
   <h3>My Account</h3>
 </div>
 
+
 <div class="content-container">
-  <div class="container white z-depth-2">
-    <div class="account-container">
 
-      <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a class="active" href="#test1">Profile</a></li>
-          <li class="tab col s3" id="jam-tab"><a href="#test2">Jams</a></li>
-          <li class="tab col s3"><a href="#test3">Groups</a></li>
-          <li class="tab col s3"><a href="#test4">Search</a></li>
-        </ul>
-      </div>
-      <div class="divider"></div>
+  <div class="top-container">
+    <div class="img-container-large">
+      <img class="circle" src="<%= musician.pic_path %>">
+    </div>
+    <h2><%= musician.username.toUpperCase() %></h2>
+    <h3>City: <%= musician.city %></h3>
+    <div class="links">
+      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
+    </div>
+  </div>
 
-        <div id="test1" class="col s12">
+  <div class="bottom-container">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="bottom-left-container">
+          <h2>Bio:</h2>
           <div class="divider"></div>
-          <div class="profile-container">
-            <div class="img-container">
-              <img class="circle" src="<%= musician.pic_path %>">
-            </div>
-              <div class="section">
-                <h5>Name:</h5>
-                <p><%= musician.username %></p>
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h5>City:</h5>
-                <p><%= musician.city %></p>
-              </div>
-              <div class="divider"></div>
-              <div class="section">
-                <h5>Instruments:</h5>
-                <p><%= musician.instruments %></p>
-              </div>
+          <div class="section">
           </div>
-        </div>
-
-        <div id="test2" class="col s12" id="jamsinfo">
-          <div class="divider"></div>
-          <div class="jams-container">
-            <div class="col s12 m7 jams-info">
-              <div class="card horizontal">
-                <div class="img-container valign-wrapper">
-                  <img class="circle" src="">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <h3><span class="jam-name"></span></h3>
-                    <p></p>
-                  </div>
-                  <div class="card-action">
-                    <a href="/musicians/">View/Edit</a>
-                    <a href="/musicians/">Invite Musicians</a>
-                    <a href="/musicians/">Delete</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="section">
           </div>
-        </div>
-
-        <div id="test3" class="col s12">
-          <div class="divider"></div>
-        </div>
-
-        <div id="test4" class="col s12">
-          <div class="divider"></div>
-          <p>
-            <a href="profile/logout">Log Out</a>
-          </p>
-
-          <p>
-            <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
-          </p>
-
-          <p>
-            <a href="profile/<%= req.user._id %>/instruments/edit">Edit My Instruments</a>
-          </p>
-
-          <p>
-            <a href="/jams/new">Create a Jam</a>
-          </p>
-
-          <p>
-            <a href="/jams/<%= req.user._id %>/view">View my Jams</a>
-          </p>
-
-          <p>
-            <a href="/jams/view">View all Jams</a>
-          </p>
-
-          <p>
-            <a href="/musicians/view">Search Musicians</a>
-          </p>
-
-          <p>
-            <a href="/groups/new">Create Group</a>
-          </p>
-
-          <p>
-            <a href="/groups/<%= req.user._id %>/view">View my groups</a>
-          </p>
-
+          <div class="section">
           </div>
         </div>
       </div>
+      <div class="col s12 m6">
+        <div class="bottom-right-container">
+          <h2>Instruments:</h2>
+          <div class="divider"></div>
+          <% for (i=0; i < musician.instruments.length; i++) { %>
+            <div class="instrument-card">
+               <div class="instrument-image-container">
+                  <img src="/images/png/<%= musician.instruments[i].replace(/\s/g, '').toLowerCase() %>.png">
+                </div>
+                <p><%= musician.instruments[i] %></p>
+            </div>
+          <% } %>
 
-      <p>
-        <a href="/profile/<%= req.user._id %>/delete">Delete Account</a>
-      </p>
 
+
+        </div>
+      </div>
     </div>
   </div>
 
 </div>
+
+
+
+
+<p>
+  <a href="profile/logout">Log Out</a>
+</p>
+
+<p>
+  <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
+</p>
+
+<p>
+  <a href="profile/<%= req.user._id %>/instruments/edit">Edit My Instruments</a>
+</p>
+
+<p>
+  <a href="/jams/new">Create a Jam</a>
+</p>
+
+<p>
+  <a href="/profile/myjams">View my Jams</a>
+</p>
+
+<p>
+  <a href="/jams/view">View all Jams</a>
+</p>
+
+<p>
+  <a href="/musicians/view">Search Musicians</a>
+</p>
+
+<p>
+  <a href="/groups/new">Create Group</a>
+</p>
+
+<p>
+  <a href="/groups/<%= req.user._id %>/view">View my groups</a>
+</p>

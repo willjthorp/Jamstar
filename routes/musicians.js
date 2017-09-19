@@ -4,6 +4,7 @@ const Jam = require("../models/jam");
 const User = require("../models/user");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+// View all muscians
 musicians.get('/view', (req, res, next) => {
   User.find({}, (err, musicians) => {
     if (err) {return next(err);}
@@ -11,6 +12,7 @@ musicians.get('/view', (req, res, next) => {
   });
 });
 
+// View single musician
 musicians.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   User.findById(userId, (err, musician) => {
@@ -18,5 +20,6 @@ musicians.get('/:userId', (req, res, next) => {
     res.render('musicians/viewsingle', { req, musician });
   });
 });
+
 
 module.exports = musicians;

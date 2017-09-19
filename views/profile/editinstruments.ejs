@@ -10,21 +10,31 @@
 
 <div class="content-container">
 
-<form action="/profile/<%= user._id %>/instruments/edit/" method="POST" class="instrument-card-container">
+<form action="/profile/<%= user._id %>/instruments/edit/" method="POST">
 
-  <p>Select at least one instrument</p>
+  <div class="top-container">
+    <h4>Select your instruments</h4>
 
-  <% for (key in instruments) { %>
-
-  <div class="instrument-card">
-    <label class="instrument-label" for="<%= key %>"><img class="margin-right" src="/images/512/<%= key %>.png"><%= instruments[key] %></label>
-    <input type="checkbox" name="instruments" value="<%= instruments[key] %>" class="checkbox" <% if ((user.instruments || []).indexOf(instruments[key]) !== -1) { %> checked="checked" <% } %> >
+    <div class="instruments-container">
+    <% for (key in instruments) { %>
+      <div class="instrument-card">
+        <input type="checkbox" name="instruments" value="<%= instruments[key] %>" id="<%= key %>" class="checkbox" <% if ((user.instruments || []).indexOf(instruments[key]) !== -1) { %> checked="checked" <% } %> />
+        <label for="<%= key %>">
+          <div class="instrument-image-container">
+            <img src="/images/png/<%= key %>.png">
+          </div>
+        </label>
+        <p><%= instruments[key] %></p>
+      </div>
+    <% } %>
+  </div>
   </div>
 
-  <% } %>
 
-  <button type="submit" class="btn btn-primary btn-block">Save</button>
+    <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
+      <i class="material-icons right">send</i>
+    </button>
 
-</form>
+    </form>
 
 </div>
