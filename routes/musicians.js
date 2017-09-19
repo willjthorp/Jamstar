@@ -7,8 +7,11 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 // View all muscians
 musicians.get('/view', (req, res, next) => {
   User.find({}, (err, musicians) => {
-    if (err) {return next(err);}
-    res.render('musicians/viewall', { req, musicians });
+    if (err) {
+      return next(err);
+    } else {
+        res.render('musicians/viewall', { req, musicians });
+    }
   });
 });
 
@@ -16,8 +19,11 @@ musicians.get('/view', (req, res, next) => {
 musicians.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   User.findById(userId, (err, musician) => {
-    if (err) {return next(err);}
-    res.render('musicians/viewsingle', { req, musician });
+    if (err) {
+      return next(err);
+    } else {
+        res.render('musicians/viewsingle', { req, musician });
+    }
   });
 });
 

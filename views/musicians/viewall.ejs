@@ -1,9 +1,14 @@
 <div class="secondary-header">
 
+  <% if (typeof jam !== undefined) { %>
   <p>
-    <a href="/profile">
-      < Return to profile</a>
+    <a href="javascript:history.back()">< Return to jam</a>
   </p>
+  <% } else { %>
+  <p>
+    <a href="/profile">< Return to profile</a>
+  </p>
+  <% } %>
 
 
 
@@ -31,6 +36,9 @@
       </div>
     </div>
 
+    <% if (typeof jam !== undefined) { %>
+      <form action="/jams/<%= jam._id %>/invite" method="post">
+    <% } %>
 
     <% for (i=0; i < musicians.length; i++) { %>
       <div class="col s12 m7">
@@ -44,27 +52,33 @@
               <p>
                 <%= musicians[i].city %>
               </p>
-              <p><span class="instruments-list">
-            <% for (j=0; j < musicians[i].instruments.length; j++) { %>
-              <%= musicians[i].instruments[j] %> |
-            <% } %></span>
+              <p>
+                <span class="instruments-list">
+                  <% for (j=0; j < musicians[i].instruments.length; j++) { %>
+                    <%= musicians[i].instruments[j] %> |
+                  <% } %>
+                </span>
               </p>
             </div>
             <div class="card-action">
               <% if (typeof jam !== undefined) { %>
                 <p>
-                  <input type="checkbox" id="chkbx_<%= musicians[i]._id %>" />
+                  <input type="checkbox" name="invited" value="<%= musicians[i]._id %>" id="chkbx_<%= musicians[i]._id %>" <% if ((jam.invited || []).indexOf(musicians[i]._id) !== -1) { %> checked="checked" <% } %>/>
                   <label for="chkbx_<%= musicians[i]._id %>">Invite</label>
                 </p>
               <% } %>
               <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
-
             </div>
           </div>
         </div>
       </div>
       <% } %>
 
+      <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
+        <i class="material-icons right">send</i>
+      </button>
+
+    </form>
 
   </div>
 

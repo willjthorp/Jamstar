@@ -87,6 +87,7 @@ profile.get('/myjams', ensureLoggedIn(), (req, res, next) => {
      if (err) {
        return next(err);
      } else {
+       console.log(jams);
        res.render('jams/viewown', {req, jams});
      }
    });

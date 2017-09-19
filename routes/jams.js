@@ -11,6 +11,7 @@ jams.get('/new', ensureLoggedIn(), (req, res, next) => {
     if (err) {
       return next(err);
     }
+    console.log(venues);
     res.render('jams/new-location', {req, venues});
   });
 });
@@ -18,42 +19,23 @@ jams.get('/new', ensureLoggedIn(), (req, res, next) => {
 // Save new jam
 jams.post('/new', ensureLoggedIn(), (req, res, next) => {
 
-  let location = {
-    type: 'Point',
-    coordinates: [req.body.longitude, req.body.latitude]
-  };
 
   const newJam = new Jam({
-    venueName: req.body.venueName,
-    location: location,
+    venue: req.body.id,
     creator: req.user._id
   });
 
+  console.log('New Jam:', newJam);
   newJam.save((err, jam) => {
     if (err) {
-      res.render("jams/new", { req, message: "Something went wrong" });
+      console.log('ERRROR:', err);
+      res.render("jams/new-location", { req, message: "Something went wrong" });
     } else {
       res.redirect(`/jams/${jam.id}/edit`);
     }
   });
 });
 
-// View current users jams
-// jams.get('/:userId/view', ensureLoggedIn(), (req, res, next) => {
-//   const userId = req.params.userId;
-//   User.findById(userId, (err, user) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     Jam.find({"creator" : user._id}, (err, jams) => {
-//        if (err) {
-//          return next(err);
-//        } else {
-//          res.render('jams/viewown', {req, jams});
-//        }
-//      });
-//    });
-// });
 
 // Render edit a jam form
 jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
@@ -79,7 +61,7 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect(`/jams/${req.user._id}/view`);
+    res.redirect(`/jams/${jamId}/view`);
   });
 });
 
@@ -87,8 +69,7 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
 // View Specific Jam
 jams.get('/:jamId/view', (req, res, next) => {
   const jamId = req.params.jamId;
-  Jam.findById(jamId, (err, jam) => {
-    console.log(jam);
+  Jam.findById(jamId).populate('invited').exec(function (err, jam) {
     res.render('jams/viewsingle', {req, jam});
   });
 });
@@ -107,6 +88,24 @@ jams.get('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
             res.render('musicians/viewall', {req, jam, musicians});
         }
       });
+    }
+  });
+});
+
+// Save invited users
+jams.post('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
+  const jamId = req.params.jamId;
+  console.log(req.body);
+  console.log(req.body);
+  var jamUpdate = {
+    invited: req.body.invited,
+  };
+
+  Jam.findByIdAndUpdate(jamId, jamUpdate, (err, jam) => {
+    if (err) {
+      return next(err);
+    } else {
+        res.redirect(`/jams/${jam.id}/view`);
     }
   });
 });

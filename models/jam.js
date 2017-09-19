@@ -3,12 +3,6 @@ const Schema   = mongoose.Schema;
 
 const JamSchema = Schema({
   name: String,
-  location: {
-    type: {
-      type: String
-    },
-    coordinates: [Number]
-  },
   venue: { type: Schema.Types.ObjectId, ref: 'Venue' },
   date: String,
   time: String,

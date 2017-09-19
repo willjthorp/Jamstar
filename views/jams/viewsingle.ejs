@@ -18,14 +18,14 @@
     <h3><%= jam.date %></h3>
     <h3><%= jam.time %></h3>
     <div class="links">
-      <a href="">Edit</a> | <a href="">Delete</a>
+      <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/delete">Delete</a>
     </div>
   </div>
 
 
   <div class="bottom-container">
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col s12 m4">
         <div class="bottom-left-container">
           <h2>Venue info:</h2>
           <div class="divider"></div>
@@ -45,11 +45,26 @@
           </div>
         </div>
       </div>
-      <div class="col s12 m6">
+      <div class="col s12 m4">
         <div class="bottom-right-container">
           <h2>Attending:</h2>
           <div class="divider"></div>
           <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="bottom-right-container">
+          <h2>Invited:</h2>
+          <a href="/jams/<%= jam._id %>/invite" class="right-align">Invite Musicians</a>
+          <div class="divider"></div>
+          <% for (i=0; i < jam.invited.length; i++) { %>
+          <div class="small-user-card center-align">
+            <div class="img-container-small">
+              <img class="circle" src="<%= jam.invited[i].pic_path %>">
+            </div>
+            <p><%= jam.invited[i].username %></p>
+          </div>
+          <% } %>
         </div>
       </div>
     </div>
