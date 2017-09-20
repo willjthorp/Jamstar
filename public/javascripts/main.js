@@ -11,7 +11,8 @@ $(document).ready(function(){
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: true // Close upon selecting a date,
+    closeOnSelect: true, // Close upon selecting a date,
+    min: Date.now()
   });
 
     $('.timepicker').pickatime({
@@ -48,20 +49,19 @@ $('#jam-tab').on('click', function() {
 });
 
 $('.input-field').on('change', function () {
-    var input, filter, ul, li, a, i;
-    input = $('#instfilter').val();
+    var input = $('#instfilter').val();
     console.log(input);
-    $('.instruments-list').each(function(index) {
-      console.log($(this).text().indexOf(input));
+    $('.instruments-list-text').each(function(index) {
+      console.log($(this).parents().eq(2));
       if ($(this).text().indexOf(input) >= 0) {
-          $(this).parents().eq(4).show();
+          $(this).parents().eq(2).show();
       } else {
-          $(this).parents().eq(4).hide();
+          $(this).parents().eq(2).hide();
       }
     });
 });
 
 $('.filter-btn').on('click', function () {
-    $('.col').show();
+    $('.card').show();
     Materialize.updateTextFields();
 });

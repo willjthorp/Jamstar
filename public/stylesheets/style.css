@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
   color: #262626;
@@ -24,26 +23,21 @@ a:hover {
   color: #0d5e91
 }
 
+.content-container {
+  padding-top: 60px;
+}
+
 .map-container {
   width: 50%;
   margin-bottom: 30px;
   position: fixed;
   height: 87vh;
-}
-
-.content-container {
-  padding-top: 60px;
+  padding-right: 15px;
 }
 
 #jam-venues-map, #jam-map {
   width: 100%;
   height: 85vh;
-}
-
-#map {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 30px;
 }
 
 .form-control {
@@ -75,8 +69,13 @@ a:hover {
   font-size: 4.5rem;
 }
 
-p, label {
+p {
   font-family: 'Montserrat', sans-serif;
+}
+
+.select-wrapper+label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
 }
 
 nav, .nav-wrapper {
@@ -158,7 +157,7 @@ nav ul li:hover {
 
 .file-field .btn {
   float: none;
-  width: 50%;
+  width: 100%;
 }
 
 .file-field .file-path-wrapper {
@@ -234,13 +233,24 @@ nav ul li:hover {
 
 .instruments-list .instrument-image-container-tiny {
   display: inline-block;
-  margin: 10px 40px 20px 0px;
+  margin: 10px 25px 20px 0px;
+}
+
+.instruments-list-text {
+  display: none
 }
 
 .margin-right {
   margin-right: 20px;
 }
 
+.margin-top {
+  margin-top: 30px;
+}
+
+.offset-top {
+  margin-top: -30px;
+}
 
 .jam-info {
   border: 1px solid black;
@@ -254,13 +264,14 @@ nav ul li:hover {
 
 .img-container, .img-container-large, .img-container-small  {
   margin: auto;
-  padding: 10px;
+  padding: 15px
 }
 
 .img-container {
-  min-width: 150px;
-  min-height: 150px;
-  margin-left: 10px;
+  min-width: 170px;
+  min-height: 170px;
+  width: 170px;
+  height: 170px;
 }
 
 .img-container-large {
@@ -291,10 +302,6 @@ img {
 .section p {
   font-size: 3rem;
 }
-
-/*.card, .horizontal {
-  width: 100%;
-}*/
 
 .first-jam-input {
   display: none;
@@ -344,6 +351,12 @@ textarea {
   margin: 40px auto;
 }
 
+.filter-btn {
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+
 .section h4 {
   font-size: 1.5rem;
 }
@@ -363,6 +376,7 @@ textarea {
 
 .card .card-content {
   padding-bottom: 5px;
+  padding-left: 10px;
 }
 
 .card-content h2 {
@@ -378,7 +392,7 @@ textarea {
 }
 
 .card .card-action {
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 .card-stacked {
@@ -389,6 +403,7 @@ textarea {
   .map-container {
     position: static;
     width: 100%;
+    padding: 0;
   }
 }
 

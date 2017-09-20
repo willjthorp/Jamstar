@@ -22,6 +22,8 @@
               <li><a class="header-link center-align" href="/login">Login</a></li>
               <li><a class="header-link center-align" href="/signup">Sign Up</a></li>
             <% } else { %>
+              <li><a class="header-link center-align" href="/jams/view">Search Jams</a></li>
+              <li><a class="header-link center-align" href="/musicians/view">Search Musicians</a></li>
               <li><a class="header-link center-align" href="/jams/new">Create a Jam</a></li>
               <li><a class="header-link center-align" href="/profile/myjams">My Jams</a></li>
               <li><a class="header-link center-align" href="/profile">My Account</a></li>
@@ -35,8 +37,11 @@
         <li><a href="/login"><p class="log-in">Login</p></a></li>
         <li><a href="/signup"><p class="sign-up">Sign Up</p></a></li>
       <% } else { %>
-        <li><a href="/profile/myjams"><p class="my-account">My Jams</p></a></li>
-        <li><a href="/profile"><p class="my-account">My Account</p></a></li>
+        <li><a href="/jams/view"><p>Search Jams</p></a></li>
+        <li><a href="/musicians/view"><p>Search Musicians</p></a></li>
+        <li><a href="/jams/new"><p>Create a Jam</p></a></li>
+        <li><a href="/profile/myjams"><p>My Jams</p></a></li>
+        <li><a href="/profile"><p>My Account</p></a></li>
       <% } %>
     </ul>
           <%- body -%>

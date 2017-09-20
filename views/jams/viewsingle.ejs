@@ -18,9 +18,22 @@
     <h3 class="center-align"><%= jam.description %></p>
     <h3 class="center-align"><%= jam.date %></h3>
     <h3 class="center-align"><%= jam.time %></h3>
-    <div class="links">
-      <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a> | <a href="/jams/<%= jam._id %>/delete">Delete</a>
-    </div>
+    <% if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) { %>
+      <div class="links">
+        <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a> | <a href="/jams/<%= jam._id %>/delete">Cancel Jam</a>
+      </div>
+    <% } else if (!attending) { %>
+      <div class="links">
+        <form method="post" action="/jams/<%= jam._id %>/adduser">
+         <input type="hidden" value="<%= req.user._id %>" name="newAttendee">
+         <button type="submit">Attend this jam</button>
+         </form>
+      </div>
+    <% } else { %>
+      <div class="links">
+        <a href="/jams/<%= jam._id %>/edit">Can't make it?</a>
+      </div>
+    <% } %>
   </div>
 
 

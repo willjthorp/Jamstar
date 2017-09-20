@@ -6,13 +6,23 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 // View all muscians
 musicians.get('/view', (req, res, next) => {
-  User.find({}, (err, musicians) => {
-    if (err) {
-      return next(err);
-    } else {
-        res.render('musicians/viewall', { req, musicians });
-    }
-  });
+  if (req.user) {
+    User.find({'_id': {$ne: req.user._id}}, (err, musicians) => {
+      if (err) {
+        return next(err);
+      } else {
+          res.render('musicians/viewall', { req, musicians });
+      }
+    });
+  } else {
+    User.find({}, (err, musicians) => {
+      if (err) {
+        return next(err);
+      } else {
+          res.render('musicians/viewall', { req, musicians });
+      }
+    });
+  }
 });
 
 // View single musician

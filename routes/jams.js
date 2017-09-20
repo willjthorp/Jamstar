@@ -40,12 +40,17 @@ jams.post('/new', ensureLoggedIn(), (req, res, next) => {
 // Render edit a jam form
 jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
-  Jam.findById(jamId, (err, jam) => {
-    if (err) {
-      return next(err);
-    }
-    res.render('jams/edit', {req, jam});
-  });
+    Jam.findById(jamId, (err, jam) => {
+      console.log(jam.creator);
+      console.log(req.user._id);
+      if (err) {
+        return next(err);
+      } else if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) {
+        res.render('jams/edit', {req, jam});
+      } else {
+        res.redirect(`/jams/${jamId}/view`);
+      }
+    });
 });
 
 // Save edited jam info
@@ -60,8 +65,9 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   Jam.findByIdAndUpdate(jamId, updates, (err, jam) => {
     if (err) {
       return next(err);
+    } else {
+      res.redirect(`/jams/${jamId}/view`);
     }
-    res.redirect(`/jams/${jamId}/view`);
   });
 });
 
@@ -69,8 +75,24 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
 // View Specific Jam
 jams.get('/:jamId/view', (req, res, next) => {
   const jamId = req.params.jamId;
-  Jam.findById(jamId).populate('invited').populate('attendees').populate('venue').exec(function (err, jam) {
-    res.render('jams/viewsingle', {req, jam});
+  Jam.findById(jamId, (err, jam) => {
+    if (err) {
+      return next(err);
+    } else {
+      let attending;
+      if (req.user && jam.attendees.indexOf(req.user._id) === -1) {
+        attending = false;
+      } else {
+        attending = true;
+      }
+      Jam.findById(jamId).populate('invited').populate('attendees').populate('venue').exec(function (err, jam) {
+        if (err) {
+          return next(err);
+        } else {
+          res.render('jams/viewsingle', {req, jam, attending});
+        }
+      });
+    }
   });
 });
 
@@ -85,7 +107,7 @@ jams.get('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
         if (err) {
           return next(err);
         } else {
-            res.render('musicians/viewall', {req, jam, musicians});
+            res.render('musicians/invite', {req, jam, musicians});
         }
       });
     }
@@ -95,8 +117,6 @@ jams.get('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
 // Save invited users
 jams.post('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
-  console.log(req.body);
-  console.log(req.body);
   var jamUpdate = {
     invited: req.body.invited,
   };
@@ -109,6 +129,26 @@ jams.post('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
     }
   });
 });
+
+
+// Add user to attending
+jams.post('/:jamId/adduser', ensureLoggedIn(), (req, res, next) => {
+  const jamId = req.params.jamId;
+  Jam.findById(jamId, (err, jam) => {
+    jam.attendees.push(req.user._id);
+    var jamUpdate = {
+      attendees: jam.attendees,
+    };
+    Jam.findByIdAndUpdate(jamId, jamUpdate, (err, jam) => {
+      if (err) {
+        return next(err);
+      } else {
+          res.redirect(`/jams/${jam.id}/view`);
+      }
+    });
+  });
+});
+
 
 
 // Delete a jam
@@ -131,11 +171,12 @@ jams.get('/:jamId/delete', ensureLoggedIn(), (req, res, next) => {
 
 // View all jams
 jams.get('/view', (req, res, next) => {
-  Jam.find({}).populate('creator', 'username').exec((err, jams) => {   // How does populate work???
+  Jam.find({}).populate('venue').exec(function(err, jams) {
     if (err) {
       return next(err);
+    } else {
+       res.render('jams/viewall', {req, jams});
     }
-    res.render('jams/viewall', {req, jams});
   });
 });
 

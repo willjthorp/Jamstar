@@ -1,18 +1,11 @@
 <div class="secondary-header">
 
-  <% if (typeof jam !== undefined) { %>
-    <p>
-      <a href="javascript:history.back()">
-        < Return to jam</a>
-    </p>
-  <% } else { %>
-    <p>
-      <a href="/profile">< Return to profile</a>
-    </p>
-  <% } %>
+  <p>
+    <a href="javascript:history.back()">
+      < Back</a>
+  </p>
 
-
-<h3>Search Musicians</h3>
+  <h3>Search Musicians</h3>
 
 </div>
 
@@ -23,64 +16,63 @@
     <div class="container">
 
       <div class="row">
-        <div class="input-field col s7 offset-s1">
+        <div class="input-field col s12 m5">
           <select class="filter-opt" id="instfilter">
-          <option value="1" disabled selected>Choose your option</option>
-          <option class="filter-opt" value="Piano">Piano</option>
-          <option class="filter-opt" value="Drums">Drums</option>
-          <option class="filter-opt" value="Guitar">Guitar</option>
-        </select>
-          <label>Materialize Select</label>
+            <option value="1" disabled selected>Choose your option</option>
+            <option class="filter-opt" value="Piano">Piano</option>
+            <option class="filter-opt" value="Drums">Drums</option>
+            <option class="filter-opt" value="Guitar">Guitar</option>
+          </select>
+          <label>Filter by Instruments</label>
         </div>
 
-        <div class="col s1 offset-s1">
-          <button class="btn filter-btn">Clear Filters</button>
+        <div class="input-field col s12 m5">
+          <select class="filter-opt" id="instfilter">
+            <option value="1" disabled selected>Choose your option</option>
+            <option class="filter-opt" value="Piano">Piano</option>
+            <option class="filter-opt" value="Drums">Drums</option>
+            <option class="filter-opt" value="Guitar">Guitar</option>
+          </select>
+          <label>Filter by Genre</label>
+        </div>
+
+        <div class="col s12 m2">
+          <button class="btn filter-btn">Clear</button>
         </div>
       </div>
 
-      <% if (typeof jam !== undefined) { %>
-        <form action="/jams/<%= jam._id %>/invite" method="post">
-          <% } %>
-
-            <div class="col s12 m7">
-            <% for (i=0; i < musicians.length; i++) { %>
-                <div class="card horizontal">
-                  <div class="img-container valign-wrapper">
-                    <img class="circle" src="<%= musicians[i].pic_path %>">
+      <div class="col s12 m7">
+        <% for (i=0; i < musicians.length; i++) { %>
+          <div class="card horizontal hoverable">
+            <div class="img-container valign-wrapper">
+              <img class="circle" src="<%= musicians[i].pic_path %>">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h2><%= musicians[i].username %></h3>
+              <p>
+                <%= musicians[i].city %>
+              </p>
+              <span class="instruments-list-text">
+                <% for (j=0; j < musicians[i].instruments.length; j++) { %>
+                  <%= musicians[i].instruments[j] %> |
+                <% } %>
+              </span>
+              <div class="instruments-list">
+                <% for (j=0; j < musicians[i].instruments.length; j++) { %>
+                  <div class="instrument-image-container-tiny">
+                    <img src="/images/png/<%= musicians[i].instruments[j].replace(/\s/g, '').toLowerCase() %>.png">
                   </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                      <h2><%= musicians[i].username %></h3>
-                      <p>
-                        <%= musicians[i].city %>
-                      </p>
-                      <div class="instruments-list">
-                        <% for (j=0; j < musicians[i].instruments.length; j++) { %>
-                          <div class="instrument-image-container-tiny">
-                            <img src="/images/png/<%= musicians[i].instruments[j].replace(/\s/g, '').toLowerCase() %>.png">
-                          </div>
-                        <% } %>
-                    </div>
-                    <div class="card-action">
-                      <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
-                      <% if (typeof jam !== undefined) { %>
-                        <p>
-                          <input type="checkbox" name="invited" value="<%= musicians[i]._id %>" id="chkbx_<%= musicians[i]._id %>" <% if ((jam.invited || []).indexOf(musicians[i]._id) !==- 1) { %> checked="checked"
-                          <% } %>/>
-                            <label for="chkbx_<%= musicians[i]._id %>">Invite</label>
-                        </p>
-                        <% } %>
-                    </div>
-                  </div>
-                </div>
+                <% } %>
               </div>
-              <% } %>
+            <div class="card-action">
+              <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
 
-        <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
-          <i class="material-icons right">send</i>
-        </button>
-
-        </form>
 
     </div>
 

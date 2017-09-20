@@ -55,6 +55,10 @@ profile.post('/:userId/edit', ensureLoggedIn(), upload.single('profile-pic'), (r
   }
 });
 
+profile.get('/instruments', ensureLoggedIn(), (req, res, next) => {
+  res.redirect(`/profile/${req.user._id}/instruments/edit`, {req, user: req.user, instruments});
+});
+
 // Render edit instruments page
 profile.get('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
@@ -93,7 +97,7 @@ profile.get('/myjams', ensureLoggedIn(), (req, res, next) => {
     if (err) {
       return next(err);
     } else {
-       res.render('jams/viewown', {req, jams});
+        res.render('jams/viewown', {req, jams});
     }
   });
 });

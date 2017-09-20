@@ -22,7 +22,7 @@ auth.get('/signup', ensureLoggedOut(), (req, res) => {
 
 // Save new user info
 auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/profile',
+  successRedirect : `/profile/instruments/`,
   failureRedirect : '/signup',
   failureFlash : true
 }));
