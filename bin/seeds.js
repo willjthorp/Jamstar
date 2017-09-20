@@ -78,6 +78,129 @@ const venues = [
   },
 ];
 
+const users = [
+  {
+    username: 'Dominic Lawrence',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-91227.jpeg'
+  },
+  {
+    username: 'Antonio Chandler',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-175701.jpeg'
+  },
+  {
+    username: 'Roderick	Harmon',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-193355.jpeg'
+  },
+  {
+    username: 'Katrina Ramsey',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-171296.jpeg'
+  },
+  {
+    username: 'Shelley Bass',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-206445.jpeg'
+  },
+  {
+    username: 'Wm	Morales',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-211050.jpeg'
+  },
+  {
+    username: 'Mable Schultz',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-206542.jpeg'
+  },
+  {
+    username: 'Dewey Price',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-247917.jpeg'
+  },
+  {
+    username: 'Katie Pena',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-253758.jpeg'
+  },
+  {
+    username: 'Andrea	Lane',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-289825.jpeg'
+  },
+  {
+    username: 'Roman Hill',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo.jpg'
+  },
+  {
+    username: 'Nicholas	Daniels',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-428311.jpeg'
+  },
+  {
+    username: 'Wilbert Bates',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-343717.jpeg'
+  },
+  {
+    username: 'Kay Salazar',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-295564.jpeg'
+  },
+  {
+    username: 'Kelli Curry',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-324030.jpeg'
+  },
+  {
+    username: 'Kristi	Clayton',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-324658.jpeg'
+  },
+  {
+    username: 'Carole	Collins',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-354951.jpeg'
+  },
+  {
+    username: 'Stewart Blake',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-374871.jpeg'
+  },
+  {
+    username: 'Sheldon Tyler',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/pexels-photo-375880.jpeg'
+  },
+  {
+    username: 'Tyler Bowen',
+    city: 'Barcelona',
+    instruments: [],
+    pic_path: '/images/userimgs/startup-photo.jpg'
+  },
+];
+
 
 Venue.create(venues, (err)=>{
   if (err) { throw (err); }

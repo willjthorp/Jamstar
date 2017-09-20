@@ -20,9 +20,10 @@ const jams = require('./routes/jams');
 const musicians = require('./routes/musicians');
 const groups = require('./routes/groups');
 const api = require('./routes/api');
+require("dotenv").config();
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/second-project");
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('layout', 'layouts/main-layout');
@@ -36,7 +37,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true,
   cookie: { maxAge: 600000 },
-}));  // Do I need the mongo store thing if I'm using passport?
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
