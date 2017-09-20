@@ -12,16 +12,16 @@
     <div class="img-container-large">
       <img class="circle" src="<%= musician.pic_path %>">
     </div>
-    <h2><%= musician.username.toUpperCase() %></h2>
-    <h3>City: <%= musician.city %></h3>
+    <h2 class="center-align"><%= musician.username.toUpperCase() %></h2>
+    <h3 class="center-align">City: <%= musician.city %></h3>
     <div class="links">
-      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
+      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a> | <a href="profile/<%= req.user._id %>/instruments/edit">Edit Instruments</a>
     </div>
   </div>
 
   <div class="bottom-container">
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col s12 l6">
         <div class="bottom-left-container">
           <h2>Bio:</h2>
           <div class="divider"></div>
@@ -39,63 +39,23 @@
           </div>
         </div>
       </div>
-      <div class="col s12 m6">
+      <div class="col s12 l6">
         <div class="bottom-right-container">
           <h2>Instruments:</h2>
           <div class="divider"></div>
-          <% for (i=0; i < musician.instruments.length; i++) { %>
-            <div class="instrument-card">
-               <div class="instrument-image-container">
-                  <img src="/images/png/<%= musician.instruments[i].replace(/\s/g, '').toLowerCase() %>.png">
-                </div>
-                <p><%= musician.instruments[i] %></p>
-            </div>
+          <% if (musician.instruments) { %>
+            <% for (i=0; i < musician.instruments.length; i++) { %>
+              <div class="instrument-card">
+                 <div class="instrument-image-container">
+                    <img src="/images/png/<%= musician.instruments[i].replace(/\s/g, '').toLowerCase() %>.png">
+                  </div>
+                  <p><%= musician.instruments[i] %></p>
+              </div>
+            <% } %>
           <% } %>
-
-
-
         </div>
       </div>
     </div>
   </div>
 
 </div>
-
-
-
-
-<p>
-  <a href="profile/logout">Log Out</a>
-</p>
-
-<p>
-  <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
-</p>
-
-<p>
-  <a href="profile/<%= req.user._id %>/instruments/edit">Edit My Instruments</a>
-</p>
-
-<p>
-  <a href="/jams/new">Create a Jam</a>
-</p>
-
-<p>
-  <a href="/profile/myjams">View my Jams</a>
-</p>
-
-<p>
-  <a href="/jams/view">View all Jams</a>
-</p>
-
-<p>
-  <a href="/musicians/view">Search Musicians</a>
-</p>
-
-<p>
-  <a href="/groups/new">Create Group</a>
-</p>
-
-<p>
-  <a href="/groups/<%= req.user._id %>/view">View my groups</a>
-</p>

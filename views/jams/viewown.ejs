@@ -10,19 +10,40 @@
 
 <div class="content-container">
 
-<div class="jams-container">
-
-<% for (i=0; i < jams.length; i++) { %>
-  <div class="jam-info">
-    <h3><%= jams[i].name %></h3>
-    <p><%= jams[i].date %></p>
-    <p><%= jams[i].time %></p>
-    <a href="/jams/<%= jams[i]._id %>/view">View Jam</a><br>
-    <a href="/jams/<%= jams[i]._id %>/edit">Edit Jam</a><br>
-    <a href="/jams/<%= jams[i]._id %>/delete">Delete Jam</a>
+<div class="row">
+  <div class="col s6">
+    <div id="jam-map"></div>
   </div>
-<% } %>
+  <div class="col s6">
 
+    <% for (i=0; i < jams.length; i++) { %>
+        <div class="card horizontal venue">
+          <div class="coords"><%= jams[i].venue.location.coordinates[0] %></div>
+          <div class="coords"><%= jams[i].venue.location.coordinates[1] %></div>
+          <div class="img-container valign-wrapper">
+            <img class="circle" src="<%= jams[i].pic_path %>">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h2><%= jams[i].name %></h2>
+              <p><%= jams[i].venue.name %></p>
+              <p><%= jams[i].date %></p>
+              <p><%= jams[i].time %></p>
+            </div>
+            <div class="card-action">
+              <a href="/jams/<%= jams[i].id %>/view">View Info</a>
+              <a href="/jams/<%= jams[i].id %>/edit">Edit</a>
+              <a href="/jams/<%= jams[i].id %>/delete">Delete</a>
+            </div>
+          </div>
+        </div>
+    <% } %>
+
+  </div>
 </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascripts/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showJamMarkers"></script>

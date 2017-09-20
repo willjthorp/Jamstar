@@ -11,9 +11,11 @@ const instruments = require('../models/enums/instruments');
 // Render profile home page
 profile.get('/', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, musician) => {
-    if (err) {return next(err);}
-    console.log(musician);
-    res.render('profile/home', {req, musician});
+    if (err) {
+      return next(err);
+    } else {
+        res.render('profile/home', {req, musician});
+    }
   });
 });
 
@@ -42,8 +44,9 @@ profile.post('/:userId/edit', ensureLoggedIn(), upload.single('profile-pic'), (r
       updates.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt));
     }
     User.findByIdAndUpdate(userId, updates, (err, user) => {
-      if (err) { return next(err); }
-      else {
+      if (err) {
+        return next(err);
+      } else {
         res.redirect('/profile');
       }
     });
@@ -72,25 +75,27 @@ profile.post('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => 
 
   if (req.user._id == userId) {
     User.findByIdAndUpdate(userId, instrumentsUpdate, (err, user) => {
-      if (err) { return next(err); }
-      res.redirect('/profile');
+      if (err) {
+        return next(err);
+      } else {
+          res.redirect('/profile');
+      }
     });
   } else {
-    res.redirect('/profile');
+      res.redirect('/profile');
   }
 });
 
 
 // View users jams
 profile.get('/myjams', ensureLoggedIn(), (req, res, next) => {
-  Jam.find({"creator" : req.user._id}, (err, jams) => {
-     if (err) {
-       return next(err);
-     } else {
-       console.log(jams);
+  Jam.find({"creator" : req.user._id}).populate('venue').exec(function(err, jams) {
+    if (err) {
+      return next(err);
+    } else {
        res.render('jams/viewown', {req, jams});
-     }
-   });
+    }
+  });
 });
 
 
@@ -105,11 +110,14 @@ profile.get('/:userId/delete', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
   if (req.user._id == userId) {
     User.findByIdAndRemove(userId, (err, user) => {
-      if (err) { return next(err); }
-      res.redirect('/');
+      if (err) {
+        return next(err);
+      } else {
+          res.redirect('/');
+      }
     });
   } else {
-    res.redirect('/profile');
+      res.redirect('/profile');
   }
 });
 

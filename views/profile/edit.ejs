@@ -10,37 +10,47 @@
 
 <div class="content-container">
 
-<form action="/profile/<%= user._id %>/edit/" method="POST" class="form-group" enctype="multipart/form-data">
-
-  <div class="file-field input-field">
-      <div class="btn">
-        <span>Upload Profile Picture</span>
-        <input type="file" name="profile-pic" id="trip-picture">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Select photo">
-      </div>
+  <div class="top-container">
+    <div class="container-small">
+    <div class="img-container-large">
+      <img class="circle" src="<%= user.pic_path %>">
     </div>
 
-  <div>
-    <label for="city">Edit Current City</label>
-    <input type="text" class="form-control" name="city" id="city" value="<%= user.city %>" placeholder="Enter city here...">
+    <form action="/profile/<%= user._id %>/edit/" method="POST" enctype="multipart/form-data">
+
+
+      <div class="file-field input-field center-align">
+          <div class="btn">
+            <span>Upload New Profile Picture</span>
+            <input type="file" name="profile-pic">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+
+      <div>
+        <label for="city">Edit Current City</label>
+        <input type="text" class="form-control" name="city" id="city" value="<%= user.city %>" placeholder="Enter city here...">
+      </div>
+
+      <div>
+        <label for="password">Edit Password</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter new password here...">
+      </div>
+
+      <div>
+        <label for="email">Edit Email</label>
+        <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>">
+      </div>
+
+    </div>
   </div>
 
-  <div>
-    <label for="password">Edit Password</label>
-    <input type="password" class="form-control" name="password" id="password" placeholder="Enter new password here...">
-  </div>
-
-  <div>
-    <label for="email">Edit Email</label>
-    <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>">
-  </div>
-
-  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+  <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
     <i class="material-icons right">send</i>
   </button>
 
-</form>
+  </form>
 
 </div>

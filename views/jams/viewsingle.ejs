@@ -1,7 +1,7 @@
 <div class="secondary-header">
 
   <p>
-    <a href="/profile">< My jams</a>
+    <a href="/profile/myjams">< My jams</a>
   </p>
 
     <h3>Jam info</h3>
@@ -14,56 +14,65 @@
     <div class="img-container-large">
       <img class="circle" src="<%= jam.pic_path %>">
     </div>
-    <h2><%= jam.name.toUpperCase() %></h2>
-    <h3><%= jam.date %></h3>
-    <h3><%= jam.time %></h3>
+    <h2 class="center-align"><%= jam.name.toUpperCase() %></h2>
+    <h3 class="center-align"><%= jam.description %></p>
+    <h3 class="center-align"><%= jam.date %></h3>
+    <h3 class="center-align"><%= jam.time %></h3>
     <div class="links">
-      <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/delete">Delete</a>
+      <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a> | <a href="/jams/<%= jam._id %>/delete">Delete</a>
     </div>
   </div>
 
 
   <div class="bottom-container">
     <div class="row">
-      <div class="col s12 m4">
+      <div class="col s12 l4">
         <div class="bottom-left-container">
           <h2>Venue info:</h2>
           <div class="divider"></div>
-          <div class="section">
-            <h5>Name:</h5>
-            <p>Venue 1</p>
-          </div>
-          <div class="divider"></div>
-          <div class="section">
-            <h5>Address:</h5>
-            <p>Some address</p>
-          </div>
-          <div class="divider"></div>
-          <div class="section">
-            <h5>Website:</h5>
-            <p>some website</p>
+          <div class="venue-info">
+            <div class="img-container">
+              <img class="circle" src="<%= jam.venue.pic_path %>">
+            </div>
+            <h2><%= jam.venue.name %></h2>
+            <p><%= jam.venue.address %></p>
+            <a href="<%= jam.venue.website %>"><%= jam.venue.website %></p></a>
           </div>
         </div>
       </div>
-      <div class="col s12 m4">
+      <div class="col s12 l4">
         <div class="bottom-right-container">
           <h2>Attending:</h2>
           <div class="divider"></div>
-          <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a>
+          <% if (jam.attendees) { %>
+            <% for (i=0; i < jam.attendees.length; i++) { %>
+            <div class="small-user-card center-align">
+              <a href="/musicians/<%= jam.attendees[i].id %>">
+              <div class="img-container-small">
+                <img class="circle" src="<%= jam.attendees[i].pic_path %>">
+              </div>
+              <p><%= jam.attendees[i].username %></p>
+              </a>
+            </div>
+            <% } %>
+          <% } %>
         </div>
       </div>
-      <div class="col s12 m4">
+      <div class="col s12 l4">
         <div class="bottom-right-container">
           <h2>Invited:</h2>
-          <a href="/jams/<%= jam._id %>/invite" class="right-align">Invite Musicians</a>
           <div class="divider"></div>
-          <% for (i=0; i < jam.invited.length; i++) { %>
-          <div class="small-user-card center-align">
-            <div class="img-container-small">
-              <img class="circle" src="<%= jam.invited[i].pic_path %>">
+          <% if (jam.invited) { %>
+            <% for (i=0; i < jam.invited.length; i++) { %>
+            <div class="small-user-card center-align">
+              <a href="/musicians/<%= jam.invited[i].id %>">
+              <div class="img-container-small">
+                <img class="circle" src="<%= jam.invited[i].pic_path %>">
+              </div>
+              <p><%= jam.invited[i].username %></p>
+              </a>
             </div>
-            <p><%= jam.invited[i].username %></p>
-          </div>
+            <% } %>
           <% } %>
         </div>
       </div>

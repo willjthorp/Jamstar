@@ -14,17 +14,16 @@ router.route('/jams')
 	  });
 	});
 
-
-router.route('/jams/:userId/view')
+router.route('/myjams')
 	.get((req, res) => {
-		Jam.findById(req.params.jam_id, (error, jams) => {
-			if (error) {
+		Jam.find({"creator" : req.user._id}).populate('venue').exec(function(err, jams) {
+			if (err) {
 				res.status(500).json({message: error});
 			} else {
 				res.status(200).json(jams);
 			}
-		});
 	});
+});
 
 router.route('/venues')
 		.get((req, res) => {

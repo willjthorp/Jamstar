@@ -19,10 +19,10 @@ jams.get('/new', ensureLoggedIn(), (req, res, next) => {
 // Save new jam
 jams.post('/new', ensureLoggedIn(), (req, res, next) => {
 
-
   const newJam = new Jam({
     venue: req.body.id,
-    creator: req.user._id
+    creator: req.user._id,
+    attendees: [req.user._id]
   });
 
   console.log('New Jam:', newJam);
@@ -69,7 +69,7 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
 // View Specific Jam
 jams.get('/:jamId/view', (req, res, next) => {
   const jamId = req.params.jamId;
-  Jam.findById(jamId).populate('invited').exec(function (err, jam) {
+  Jam.findById(jamId).populate('invited').populate('attendees').populate('venue').exec(function (err, jam) {
     res.render('jams/viewsingle', {req, jam});
   });
 });
@@ -120,13 +120,14 @@ jams.get('/:jamId/delete', ensureLoggedIn(), (req, res, next) => {
     }
     else if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) {
       Jam.findByIdAndRemove(jamId, (err, jam) => {
-        res.redirect(`/jams/${req.user._id}/view`);
+        res.redirect(`/profile/myjams`);
       });
     } else {
       res.redirect(`/profile`);
     }
   });
 });
+
 
 // View all jams
 jams.get('/view', (req, res, next) => {

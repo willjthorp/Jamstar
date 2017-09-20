@@ -39,10 +39,7 @@ const venues = [
 ];
 
 
-Venue.create(venues, (err, docs)=>{
+Venue.create(venues, (err)=>{
   if (err) { throw (err); }
-    docs.forEach( (venue) => {
-      console.log(venue);
-    });
     mongoose.connection.close();
 });

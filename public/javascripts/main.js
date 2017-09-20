@@ -1,8 +1,9 @@
 $(document).ready(function(){
-  console.log("hello!");
     $('ul.tabs').tabs();
 
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+      edge: 'right',
+    });
 
     $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
