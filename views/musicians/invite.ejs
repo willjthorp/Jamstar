@@ -1,27 +1,11 @@
-
-
-
-
-
-
 <div class="secondary-header">
 
-  <% if (typeof jam !== undefined) { %>
     <p>
       <a href="javascript:history.back()">
         < Return to jam</a>
     </p>
-  <% } else { %>
-    <p>
-      <a href="/profile">< Return to profile</a>
-    </p>
-  <% } %>
 
-  <% if (typeof jam !== undefined) { %>
     <h3>Invite Musicians</h3>
-  <% } else { %>
-    <h3>Search Musicians</h3>
-  <% } %>
 
 </div>
 
@@ -31,12 +15,10 @@
 
     <div class="container offset-top">
 
-  <% if (typeof jam !== undefined) { %>
       <form action="/jams/<%= jam._id %>/invite" method="post">
         <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
           <i class="material-icons right">send</i>
         </button>
-    <% } %>
 
 
       <div class="row">
@@ -74,9 +56,7 @@
                   <div class="card-stacked">
                     <div class="card-content">
                       <h2><%= musicians[i].username %></h3>
-                      <p>
-                        <%= musicians[i].city %>
-                      </p>
+                      <p><%= musicians[i].city %></p>
                       <span class="instruments-list-text">
                         <% for (j=0; j < musicians[i].instruments.length; j++) { %>
                           <%= musicians[i].instruments[j] %> |
@@ -91,13 +71,10 @@
                       </div>
                     <div class="card-action">
                       <a href="/musicians/<%= musicians[i]._id %>">View Profile</a>
-                      <% if (typeof jam !== undefined) { %>
                         <p>
-                          <input type="checkbox" name="invited" value="<%= musicians[i]._id %>" id="chkbx_<%= musicians[i]._id %>" <% if ((jam.invited || []).indexOf(musicians[i]._id) !==- 1) { %> checked="checked"
-                          <% } %>
+                          <input type="checkbox" name="invited" value="<%= musicians[i]._id %>" id="chkbx_<%= musicians[i]._id %>" <% if ((jam.invited || []).indexOf(musicians[i]._id) !== -1) { %> checked="checked" <% } %>/>
                             <label for="chkbx_<%= musicians[i]._id %>">Invite</label>
                         </p>
-                        <% } %>
                     </div>
                   </div>
                 </div>

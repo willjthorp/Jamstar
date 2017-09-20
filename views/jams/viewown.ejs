@@ -30,8 +30,8 @@
             <div class="card-content">
               <h2><%= jams[i].name %></h2>
               <p><%= jams[i].venue.name %></p>
-              <p><%= jams[i].date %></p>
-              <p><%= jams[i].time %></p>
+              <p><%= jams[i].date %> | <%= jams[i].time %></p>
+              <p>Attending: <%= jams[i].attendees.length %></p>
             </div>
             <div class="card-action">
               <a href="/jams/<%= jams[i].id %>/view">View Info</a>
