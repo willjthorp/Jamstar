@@ -1,7 +1,7 @@
 <div class="secondary-header">
 
   <p>
-    <a href="/profile/myjams">< My jams</a>
+    <a href="javascript:history.back()">< Back</a>
   </p>
 
     <h3>Jam info</h3>
@@ -25,13 +25,16 @@
     <% } else if (!attending) { %>
       <div class="links">
         <form method="post" action="/jams/<%= jam._id %>/adduser">
-         <input type="hidden" value="<%= req.user._id %>" name="newAttendee">
-         <button type="submit">Attend this jam</button>
-         </form>
+          <input type="hidden" value="<%= req.user._id %>" name="newAttendee">
+          <button type="submit">Attend this jam</button>
+        </form>
       </div>
     <% } else { %>
       <div class="links">
-        <a href="/jams/<%= jam._id %>/edit">Can't make it?</a>
+        <form method="post" action="/jams/<%= jam._id %>/removeuser">
+          <input type="hidden" value="<%= req.user._id %>" name="removeAttendee">
+          <button type="submit">Can't make it?</button>
+        </form>
       </div>
     <% } %>
   </div>
@@ -61,9 +64,7 @@
             <% for (i=0; i < jam.attendees.length; i++) { %>
             <div class="small-user-card center-align">
               <a href="/musicians/<%= jam.attendees[i].id %>">
-              <div class="img-container-small">
-                <img class="circle" src="<%= jam.attendees[i].pic_path %>">
-              </div>
+              <div class="profile-img-container-small" style="background-image: url(<%= jam.attendees[i].pic_path %>)"></div>
               <p><%= jam.attendees[i].username %></p>
               </a>
             </div>
@@ -79,9 +80,7 @@
             <% for (i=0; i < jam.invited.length; i++) { %>
             <div class="small-user-card center-align">
               <a href="/musicians/<%= jam.invited[i].id %>">
-              <div class="img-container-small">
-                <img class="circle" src="<%= jam.invited[i].pic_path %>">
-              </div>
+              <div class="profile-img-container-small" style="background-image: url(<%= jam.invited[i].pic_path %>)"></div>
               <p><%= jam.invited[i].username %></p>
               </a>
             </div>

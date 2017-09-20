@@ -4,7 +4,7 @@
     <a href="/profile">< Return to profile</a>
   </p>
 
-    <h3>My Jams</h3>
+    <h3><%= title %></h3>
 
 </div>
 
@@ -35,8 +35,6 @@
             </div>
             <div class="card-action">
               <a href="/jams/<%= jams[i].id %>/view">View Info</a>
-              <a href="/jams/<%= jams[i].id %>/edit">Edit</a>
-              <a href="/jams/<%= jams[i].id %>/delete">Delete</a>
             </div>
           </div>
         </div>
@@ -49,4 +47,13 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/javascripts/maps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showJamMarkers"></script>
+
+<% if (title === "Jams I'm Invited To")  { %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showInvitedMarkers"></script>
+<% } else if (title === "Jams I'm Attending") { %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showAttendingMarkers"></script>
+<% } else if (title === "Search All Jams") { %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showAllJamMarkers"></script>
+<% } else if (title === "My Jams") { %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzW4MVaD-hRL-C6F_g79sxvibZz8pDLGQ&libraries=places&callback=showMyJamMarkers"></script>
+<% } %>

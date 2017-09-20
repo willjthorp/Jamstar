@@ -26,8 +26,19 @@
           <select class="filter-opt" id="instfilter">
             <option value="1" disabled selected>Choose your option</option>
             <option class="filter-opt" value="Piano">Piano</option>
+            <option class="filter-opt" value="Electric Guitar">Electric Guitar</option>
             <option class="filter-opt" value="Drums">Drums</option>
+            <option class="filter-opt" value="Saxophone">Saxophone</option>
             <option class="filter-opt" value="Guitar">Guitar</option>
+            <option class="filter-opt" value="Violin">Violin</option>
+            <option class="filter-opt" value="Bass Guitar">Bass Guitar</option>
+            <option class="filter-opt" value="Clarinet">Clarinet</option>
+            <option class="filter-opt" value="Flute">Flute</option>
+            <option class="filter-opt" value="Tuba">Tuba</option>
+            <option class="filter-opt" value="Keyboard">Keyboard</option>
+            <option class="filter-opt" value="Trumpet">Trumpet</option>
+            <option class="filter-opt" value="Trombone">Trombone</option>
+            <option class="filter-opt" value="Oboe">Oboe</option>
           </select>
           <label>Filter by Instruments</label>
         </div>
@@ -36,8 +47,19 @@
           <select class="filter-opt" id="instfilter">
             <option value="1" disabled selected>Choose your option</option>
             <option class="filter-opt" value="Piano">Piano</option>
+            <option class="filter-opt" value="Electric Guitar">Electric Guitar</option>
             <option class="filter-opt" value="Drums">Drums</option>
+            <option class="filter-opt" value="Saxophone">Saxophone</option>
             <option class="filter-opt" value="Guitar">Guitar</option>
+            <option class="filter-opt" value="Violin">Violin</option>
+            <option class="filter-opt" value="Bass Guitar">Bass Guitar</option>
+            <option class="filter-opt" value="Clarinet">Clarinet</option>
+            <option class="filter-opt" value="Flute">Flute</option>
+            <option class="filter-opt" value="Tuba">Tuba</option>
+            <option class="filter-opt" value="Keyboard">Keyboard</option>
+            <option class="filter-opt" value="Trumpet">Trumpet</option>
+            <option class="filter-opt" value="Trombone">Trombone</option>
+            <option class="filter-opt" value="Oboe">Oboe</option>
           </select>
           <label>Filter by Genre</label>
         </div>
@@ -50,9 +72,7 @@
             <div class="col s12 m7">
             <% for (i=0; i < musicians.length; i++) { %>
                 <div class="card horizontal hoverable">
-                  <div class="img-container valign-wrapper">
-                    <img class="circle" src="<%= musicians[i].pic_path %>">
-                  </div>
+                  <div class="profile-img-container" style="background-image: url(<%= musicians[i].pic_path %>)"></div>
                   <div class="card-stacked">
                     <div class="card-content">
                       <h2><%= musicians[i].username %></h3>

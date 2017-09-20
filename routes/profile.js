@@ -97,7 +97,35 @@ profile.get('/myjams', ensureLoggedIn(), (req, res, next) => {
     if (err) {
       return next(err);
     } else {
-        res.render('jams/viewown', {req, jams});
+      let title = "My Jams";
+      res.render('jams/list', {req, jams, title});
+    }
+  });
+});
+
+
+// View invited to jams
+profile.get('/myinvites', ensureLoggedIn(), (req, res, next) => {
+  Jam.find({'invited' : req.user._id}).populate('venue').exec(function(err, jams) {
+    console.log(jams);
+    if (err) {
+      return next(err);
+    } else {
+      let title = "Jams I'm Invited To";
+      res.render('jams/list', {req, jams, title});
+    }
+  });
+});
+
+
+// View attending jams
+profile.get('/myattending', ensureLoggedIn(), (req, res, next) => {
+  Jam.find({'attendees' : req.user._id}).populate('venue').exec(function(err, jams) {
+    if (err) {
+      return next(err);
+    } else {
+      let title = "Jams I'm Attending";
+      res.render('jams/list', {req, jams, title});
     }
   });
 });

@@ -10,8 +10,18 @@
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Montserrat|Questrial|Pacifico|Raleway:900|Questrial|Quicksand" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a class="header-link center-align" href="/jams/view">Search All</a></li>
+      <li><a class="header-link center-align" href="/jams/new">Create</a></li>
+      <li><a class="header-link center-align" href="/profile/myjams">My Created</a></li>
+      <li><a class="header-link center-align" href="/profile/myattending">My Attending</a></li>
+      <li><a class="header-link center-align" href="/profile/myinvites">My Invited</a></li>
+    </ul>
+
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
@@ -20,12 +30,10 @@
           <ul class="right hide-on-med-and-down">
             <% if (!req.user) { %>
               <li><a class="header-link center-align" href="/login">Login</a></li>
-              <li><a class="header-link center-align" href="/signup">Sign Up</a></li>
+              <li><a class="header-link center-align sign-up" href="/signup">Sign Up</a></li>
             <% } else { %>
-              <li><a class="header-link center-align" href="/jams/view">Search Jams</a></li>
+              <li><a class="header-link dropdown-button center-align" href="#!" data-activates="dropdown1">Jams<i class="material-icons right">arrow_drop_down</i></a></li>
               <li><a class="header-link center-align" href="/musicians/view">Search Musicians</a></li>
-              <li><a class="header-link center-align" href="/jams/new">Create a Jam</a></li>
-              <li><a class="header-link center-align" href="/profile/myjams">My Jams</a></li>
               <li><a class="header-link center-align" href="/profile">My Account</a></li>
             <% } %>
           </ul>
@@ -38,12 +46,15 @@
         <li><a href="/signup"><p class="sign-up">Sign Up</p></a></li>
       <% } else { %>
         <li><a href="/jams/view"><p>Search Jams</p></a></li>
-        <li><a href="/musicians/view"><p>Search Musicians</p></a></li>
         <li><a href="/jams/new"><p>Create a Jam</p></a></li>
-        <li><a href="/profile/myjams"><p>My Jams</p></a></li>
+        <li><a href="/profile/myjams"><p>My Created Jams</p></a></li>
+        <li><a href="/profile/myjams">Jams I'm Attending</a></li>
+        <li><a href="/profile/myinvites">Jams I'm Invited To</a></li>
+        <li><a href="/musicians/view"><p>Search Musicians</p></a></li>
         <li><a href="/profile"><p>My Account</p></a></li>
       <% } %>
     </ul>
+
           <%- body -%>
 
 

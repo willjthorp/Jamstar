@@ -105,6 +105,14 @@ nav .brand-logo {
   display: flex;
 }
 
+nav li {
+  min-width: 170px;
+}
+
+.sign-up {
+  background-color: rgba(0,0,0,0.6)
+}
+
 nav ul li:hover {
    background-color: rgba(0,0,0,0.9);
 }
@@ -219,7 +227,6 @@ nav ul li:hover {
   opacity: 0.75;
 }
 
-
 .instrument-card {
   display: inline-block;
   margin: 25px;
@@ -262,7 +269,7 @@ nav ul li:hover {
   margin-top: 30px;
 }
 
-.img-container, .img-container-large, .img-container-small  {
+.img-container, .img-container-small  {
   margin: auto;
   padding: 15px
 }
@@ -274,20 +281,45 @@ nav ul li:hover {
   height: 170px;
 }
 
-.img-container-large {
-  width: 200px;
-  height: 200px;
+.profile-img-container {
+  min-width: 150px;
+  min-height: 150px;
+  width: 150px;
+  height: 150px;
+  margin: auto 10px auto 20px;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
 }
 
-.img-container-small {
+.profile-img-container-small {
+  min-width: 80px;
+  min-height: 80px;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
+}
+
+.img-container-large {
+  width: 180px;
+  height: 180px;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
+  margin: 10px auto;
+}
+
+/*.img-container-small {
   width: 100px;
   height: 100px;
   padding: 10px;
-  transition: opacity 400ms ease;
-}
+}*/
 
-.img-container-small:hover {
-  opacity: 0.85;
+.small-user-card:hover {
+  opacity: 0.7;
 }
 
 img {
@@ -297,6 +329,9 @@ img {
 
 .small-user-card {
   display: inline-block;
+  width: 100px;
+  transition: opacity 400ms ease;
+  vertical-align: top;
 }
 
 .section p {
@@ -397,6 +432,17 @@ textarea {
 
 .card-stacked {
   overflow: auto;
+}
+
+.links button {
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: #039be5
+}
+
+.links button:hover {
+  color: #0d5e91
 }
 
 @media (max-width: 992px) {

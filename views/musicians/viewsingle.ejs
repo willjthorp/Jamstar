@@ -14,34 +14,45 @@
 <div class="content-container">
 
   <div class="top-container">
-    <div class="img-container-large">
-      <img class="circle" src="<%= musician.pic_path %>">
-    </div>
+    <div class="img-container-large" style="background-image: url(<%= musician.pic_path %>)"></div>
     <h2 class="center-align"><%= musician.username.toUpperCase() %></h2>
     <h3 class="center-align">City: <%= musician.city %></h3>
-    <!-- <div class="links">
-      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a>
-    </div> -->
   </div>
 
   <div class="bottom-container">
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col s12 l6">
         <div class="bottom-left-container">
           <h2>Bio:</h2>
           <div class="divider"></div>
           <div class="section">
+            <h4>Favourite Genres:</h4>
+            <p>Pop / Electronic / Indie</p>
           </div>
+          <div class="divider"></div>
           <div class="section">
+            <h4>Influences:</h4>
+            <p>Glass Animals / Crystal Fighters / Alt-J / Vampire Weekend</p>
           </div>
+          <div class="divider"></div>
           <div class="section">
           </div>
         </div>
       </div>
-      <div class="col s12 m6">
+      <div class="col s12 l6">
         <div class="bottom-right-container">
           <h2>Instruments:</h2>
           <div class="divider"></div>
+          <% if (musician.instruments) { %>
+            <% for (i=0; i < musician.instruments.length; i++) { %>
+              <div class="instrument-card">
+                 <div class="instrument-image-container">
+                    <img src="/images/png/<%= musician.instruments[i].replace(/\s/g, '').toLowerCase() %>.png">
+                  </div>
+                  <p><%= musician.instruments[i] %></p>
+              </div>
+            <% } %>
+          <% } %>
         </div>
       </div>
     </div>

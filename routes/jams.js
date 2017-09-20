@@ -53,6 +53,7 @@ jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
     });
 });
 
+
 // Save edited jam info
 jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
@@ -135,7 +136,35 @@ jams.post('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
 jams.post('/:jamId/adduser', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
   Jam.findById(jamId, (err, jam) => {
+    if (jam.invited) {
+      let index = jam.invited.indexOf(req.user._id);
+      if (index > -1) {
+        jam.invited.splice(index, 1);
+      }
+    }
     jam.attendees.push(req.user._id);
+    var jamUpdate = {
+      attendees: jam.attendees,
+      invited: jams.invited
+    };
+    Jam.findByIdAndUpdate(jamId, jamUpdate, (err, jam) => {
+      if (err) {
+        return next(err);
+      } else {
+          res.redirect(`/jams/${jam.id}/view`);
+      }
+    });
+  });
+});
+
+// Remove from attending
+jams.post('/:jamId/removeuser', ensureLoggedIn(), (req, res, next) => {
+  const jamId = req.params.jamId;
+  Jam.findById(jamId, (err, jam) => {
+    let index = jam.attendees.indexOf(req.user._id);
+    if (index > -1) {
+      jam.attendees.splice(index, 1);
+    }
     var jamUpdate = {
       attendees: jam.attendees,
     };
@@ -148,7 +177,6 @@ jams.post('/:jamId/adduser', ensureLoggedIn(), (req, res, next) => {
     });
   });
 });
-
 
 
 // Delete a jam
@@ -175,7 +203,8 @@ jams.get('/view', (req, res, next) => {
     if (err) {
       return next(err);
     } else {
-       res.render('jams/viewall', {req, jams});
+      let title = "Search All Jams";
+      res.render('jams/list', {req, jams, title});
     }
   });
 });

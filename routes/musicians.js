@@ -29,10 +29,14 @@ musicians.get('/view', (req, res, next) => {
 musicians.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   User.findById(userId, (err, musician) => {
+    console.log(req.user._id);
+    console.log(musician.id);
     if (err) {
       return next(err);
+    } else if (JSON.stringify(req.user._id) === JSON.stringify(musician.id)) {
+       res.redirect('/profile');
     } else {
-        res.render('musicians/viewsingle', { req, musician });
+       res.render('musicians/viewsingle', { req, musician });
     }
   });
 });
