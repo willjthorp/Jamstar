@@ -1,3 +1,15 @@
-<div class="home-container">
-  <h2>Find like-minded muscians to jam with in your area</h2>
+
+<div class="background-image"></div>
+
+<div class="homecontent">
+  <div class="logocontainer">
+    <i class="fa fa-star-o" aria-hidden="true"></i><h1>Jamstar</h1>
+  </div>
+  <h3>Search for jam sessions and meet other musicians in your city</h3>
+
+  <a href="/jams/view">Search for Jams</a>
+
+  <% if (!req.user) { %>
+  <a href="/signup">Sign Up</a>
+  <% } %>
 </div>

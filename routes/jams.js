@@ -61,6 +61,7 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
     name: req.body.name,
     date: req.body.date,
     time: req.body.time,
+    genre: req.body.genre,
     description: req.body.description
   };
   Jam.findByIdAndUpdate(jamId, updates, (err, jam) => {

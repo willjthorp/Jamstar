@@ -20,19 +20,55 @@ $(document).ready(function(){
     min: Date.now()
   });
 
-    $('.timepicker').pickatime({
-      default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-      fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-      twelvehour: false, // Use AM/PM or 24-hour format
-      donetext: 'OK', // text for done-button
-      cleartext: 'Clear', // text for clear-button
-      canceltext: 'Cancel', // Text for cancel-button
-      autoclose: true, // automatic close timepicker
-      ampmclickable: true, // make AM PM clickable
-      aftershow: function(){} //Function for after opening timepicker
-    });
+  $('.timepicker').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: false, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Clear', // text for clear-button
+    canceltext: 'Cancel', // Text for cancel-button
+    autoclose: true, // automatic close timepicker
+    ampmclickable: true, // make AM PM clickable
+    aftershow: function(){} //Function for after opening timepicker
+  });
 
-     $('select').material_select();
+   $('select').material_select();
+
+   var genreinput = $('#genrefilter').val();
+   var input = $('#instfilter').val();
+
+   if (input) {
+   $('.instruments-list-text').each(function(index) {
+     if ($(this).text().indexOf(input) >= 0 && (genreinput === null || $(this).siblings('.genre-list').text().indexOf(genreinput) >= 0)) {
+         $(this).parents().eq(2).show();
+     } else {
+         $(this).parents().eq(2).hide();
+     }
+   });
+  }
+
+  if (genreinput) {
+   $('.genre-list').each(function(index) {
+     if ($(this).text().indexOf(genreinput) >= 0 && (input === null || $(this).siblings('.instruments-list-text').text().indexOf(input) >= 0)) {
+         $(this).parents().eq(2).show();
+     } else {
+         $(this).parents().eq(2).hide();
+     }
+   });
+ }
+
+ $(".jamgenre input").val("Hi");
+
+ $('#jamgenre option').each(function(i) {
+   console.log($(this).text());
+   console.log($(this).parent().attr('value'));
+   if ($(this).text() === $(this).parent().attr('value')) {
+     $(this).attr('selected', 'selected');
+   }
+ });
+ var currentGenre = $("#jamgenre option[selected='selected']").text();
+ $(".jamgenre input").val(currentGenre);
+
 });
 
 
@@ -53,12 +89,16 @@ $('#jam-tab').on('click', function() {
   });
 });
 
-$('.input-field').on('change', function () {
+
+function goBack() {
+    window.history.back();
+}
+
+$('#instinput').on('change', function () {
+    var genreinput = $('#genrefilter').val();
     var input = $('#instfilter').val();
-    console.log(input);
     $('.instruments-list-text').each(function(index) {
-      console.log($(this).parents().eq(2));
-      if ($(this).text().indexOf(input) >= 0) {
+      if ($(this).text().indexOf(input) >= 0 && (genreinput === null || $(this).siblings('.genre-list').text().indexOf(genreinput) >= 0)) {
           $(this).parents().eq(2).show();
       } else {
           $(this).parents().eq(2).hide();
@@ -66,7 +106,27 @@ $('.input-field').on('change', function () {
     });
 });
 
-$('.filter-btn').on('click', function () {
+
+$('#genreinput').on('change', function () {
+  var genreinput = $('#genrefilter').val();
+  var input = $('#instfilter').val();
+  $('.genre-list').each(function(index) {
+    if ($(this).text().indexOf(genreinput) >= 0 && (input === null || $(this).siblings('.instruments-list-text').text().indexOf(input) >= 0)) {
+        $(this).parents().eq(2).show();
+    } else {
+        $(this).parents().eq(2).hide();
+    }
+  });
+});
+
+var select = $('select');
+
+$('.filter-btn').on('click', function (e) {
+    e.preventDefault();
     $('.card').show();
-    Materialize.updateTextFields();
+    $("form input").val("Choose your option");
+    select.prop('selectedIndex', 0); //Sets the first option as selected
+    select.material_select();
+    $('#genrefilter').val(null);
+    $('#instfilter').val(null);
 });

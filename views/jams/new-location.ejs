@@ -1,11 +1,10 @@
 <div class="secondary-header">
 
   <p>
-    <a href="/profile">
-      < Return to profile</a>
+    <a href="javascript:history.back()">< <span class="back">Back</span></a>
   </p>
 
-  <h3>Create New Jam - Select a Venue</h3>
+  <h3>Create Jam - Select Venue</h3>
 
 </div>
 
@@ -18,7 +17,7 @@
         <div id="jam-venues-map"></div>
       </div>
     </div>
-    
+
     <div class="col s12 l6">
         <% for (i=0; i < venues.length; i++) { %>
           <div class="card horizontal hoverable">
@@ -47,6 +46,7 @@
           </div>
           <% } %>
     </div>
+
   </div>
 
 </div>

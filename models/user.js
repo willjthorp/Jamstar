@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const UserSchema = Schema({
+  email: {
+    type: String,
+    index: { unique: true }
+  },
   username:     String,
-  email:    String,
   password: String,
   city: String,
   facebookID: String,
@@ -12,7 +15,14 @@ const UserSchema = Schema({
     type: Array,
     items: String
   },
-  pic_path: String,
+  genres: {
+    type: Array,
+    items: String
+  },
+  pic_path: {
+    type: String,
+    default: '/images/profile-default.jpg'
+  },
 });
 
 const User = mongoose.model('User', UserSchema);

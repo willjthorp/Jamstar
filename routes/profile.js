@@ -7,6 +7,7 @@ const upload         = multer({ dest: './public/uploads/' });
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const instruments = require('../models/enums/instruments');
+const genres = require('../models/enums/genres');
 
 // Render profile home page
 profile.get('/', ensureLoggedIn(), (req, res, next) => {
@@ -89,6 +90,39 @@ profile.post('/:userId/instruments/edit', ensureLoggedIn(), (req, res, next) => 
       res.redirect('/profile');
   }
 });
+
+
+// Render edit bio page
+profile.get('/:userId/bio/edit', ensureLoggedIn(), (req, res, next) => {
+  const userId = req.params.userId;
+  if (req.user._id == userId) {
+    res.render('profile/editbio', {req, user: req.user, genres});
+  } else {
+    res.redirect('/profile');
+  }
+});
+
+// Save edited intruments page
+profile.post('/:userId/bio/edit', ensureLoggedIn(), (req, res, next) => {
+  const userId = req.params.userId;
+
+  var bioUpdate = {
+    genres: req.body.genres,
+  };
+
+  if (req.user._id == userId) {
+    User.findByIdAndUpdate(userId, bioUpdate, (err, user) => {
+      if (err) {
+        return next(err);
+      } else {
+          res.redirect('/profile');
+      }
+    });
+  } else {
+      res.redirect('/profile');
+  }
+});
+
 
 
 // View users jams

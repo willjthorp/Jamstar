@@ -1,7 +1,7 @@
 <div class="secondary-header">
 
   <p>
-    <a href="javascript:history.back()">< Back</a>
+    <a href="javascript:history.back()">< <span class="back">Back</span></a>
   </p>
 
   <h3><%= musician.username %>'s Profile</h3>
@@ -27,7 +27,16 @@
           <div class="divider"></div>
           <div class="section">
             <h4>Favourite Genres:</h4>
-            <p>Pop / Electronic / Indie</p>
+            <p>
+              <% if (musician.genres) { %>
+                <% for (i=0; i < musician.genres.length; i++) { %>
+                  <%= musician.genres[i] %>
+                  <% if (i !== (musician.genres.length - 1)) { %>
+                  /
+                  <% } %>
+                <% } %>
+              <% } %>
+            </p>
           </div>
           <div class="divider"></div>
           <div class="section">

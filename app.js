@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const mongoose     = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
-const passport = require('./helpers/passport');
+const passport = require('passport');
+const configPassport = require('./helpers/passport');
 const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
@@ -37,16 +38,19 @@ app.use(session({
   saveUninitialized: true,
   rolling: true,
   cookie: { maxAge: 600000 },
+  // store: new MongoStore( { mongooseConnection: mongoose.connection })
 }));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
+
+
+configPassport(passport);
 
 app.use(flash());
 

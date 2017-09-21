@@ -22,6 +22,11 @@
       <li><a class="header-link center-align" href="/profile/myinvites">My Invited</a></li>
     </ul>
 
+    <ul id="dropdown2" class="dropdown-content">
+      <li><a class="header-link center-align" href="/jams/view">My Profile</a></li>
+      <li><a class="header-link center-align" href="/jams/new">Log Out</a></li>
+    </ul>
+
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
@@ -29,12 +34,13 @@
           <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <% if (!req.user) { %>
+              <li><a class="header-link center-align" href="/jams/view">Search Jams</a></li>
               <li><a class="header-link center-align" href="/login">Login</a></li>
               <li><a class="header-link center-align sign-up" href="/signup">Sign Up</a></li>
             <% } else { %>
               <li><a class="header-link dropdown-button center-align" href="#!" data-activates="dropdown1">Jams<i class="material-icons right">arrow_drop_down</i></a></li>
               <li><a class="header-link center-align" href="/musicians/view">Search Musicians</a></li>
-              <li><a class="header-link center-align" href="/profile">My Account</a></li>
+              <li><a class="header-link dropdown-button center-align" href="#!" data-activates="dropdown2">My Account<i class="material-icons right">arrow_drop_down</i></a></li>
             <% } %>
           </ul>
         </div>
@@ -48,8 +54,8 @@
         <li><a href="/jams/view"><p>Search Jams</p></a></li>
         <li><a href="/jams/new"><p>Create a Jam</p></a></li>
         <li><a href="/profile/myjams"><p>My Created Jams</p></a></li>
-        <li><a href="/profile/myjams">Jams I'm Attending</a></li>
-        <li><a href="/profile/myinvites">Jams I'm Invited To</a></li>
+        <li><a href="/profile/myjams"><p>Jams I'm Attending</p></a></li>
+        <li><a href="/profile/myinvites"><p>Jams I'm Invited To</p></a></li>
         <li><a href="/musicians/view"><p>Search Musicians</p></a></li>
         <li><a href="/profile"><p>My Account</p></a></li>
       <% } %>

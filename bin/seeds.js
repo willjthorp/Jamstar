@@ -84,120 +84,140 @@ const users = [
     username: 'Dominic Lawrence',
     city: 'Barcelona',
     instruments: ['Piano', 'Clarinet', 'Trombone'],
+    genres: ['Pop', 'Indie', 'Classical', 'Jazz', 'Country'],
     pic_path: '/images/userimgs/pexels-photo-91227.jpeg'
   },
   {
     username: 'Antonio Chandler',
     city: 'Barcelona',
     instruments: ['Bass Guitar', 'Oboe'],
+    genres: ['Indie', 'Classical'],
     pic_path: '/images/userimgs/pexels-photo-175701.jpeg'
   },
   {
     username: 'Roderick	Harmon',
     city: 'Barcelona',
     instruments: ['Bass Guitar', 'Clarinet', 'Flute'],
+    genres: ['Pop', 'Jazz', 'Ska'],
     pic_path: '/images/userimgs/pexels-photo-193355.jpeg'
   },
   {
     username: 'Katrina Ramsey',
     city: 'Barcelona',
     instruments: ['Piano', 'Violin'],
+    genres: ['Jazz', 'Ska'],
     pic_path: '/images/userimgs/pexels-photo-171296.jpeg'
   },
   {
     username: 'Shelley Bass',
     city: 'Barcelona',
     instruments: ['Electric Guitar'],
+    genres: ['Electronic', 'Hip Hop'],
     pic_path: '/images/userimgs/pexels-photo-206445.jpeg'
   },
   {
     username: 'Wm	Morales',
     city: 'Barcelona',
     instruments: ['Piano', 'Violin'],
+    genres: ['Pop', 'Classical'],
     pic_path: '/images/userimgs/pexels-photo-211050.jpeg'
   },
   {
     username: 'Mable Schultz',
     city: 'Barcelona',
     instruments: ['Electric Guitar'],
+    genres: ['Classical'],
     pic_path: '/images/userimgs/pexels-photo-206542.jpeg'
   },
   {
     username: 'Dewey Price',
     city: 'Barcelona',
     instruments: ['Electric Guitar', 'Violin', 'Trumpet'],
+    genres: ['Pop','Rock'],
     pic_path: '/images/userimgs/pexels-photo-247917.jpeg'
   },
   {
     username: 'Katie Pena',
     city: 'Barcelona',
     instruments: ['Piano', 'Flute'],
+    genres: ['Rock', 'Indie', 'Electronic'],
     pic_path: '/images/userimgs/pexels-photo-253758.jpeg'
   },
   {
     username: 'Andrea	Lane',
     city: 'Barcelona',
-    instruments: ['Vocals', 'Guitar'],
+    instruments: ['Vocals', 'Guitar', 'Bass Guitar', 'Keyboard', 'Oboe'],
+    genres: ['Pop', 'Hip Hop'],
     pic_path: '/images/userimgs/pexels-photo-289825.jpeg'
   },
   {
     username: 'Roman Hill',
     city: 'Barcelona',
     instruments: ['Vocals'],
+    genres: ['Pop', 'Indie'],
     pic_path: '/images/userimgs/pexels-photo.jpg'
   },
   {
     username: 'Nicholas	Daniels',
     city: 'Barcelona',
     instruments: ['Electric Guitar'],
+    genres: ['Rock'],
     pic_path: '/images/userimgs/pexels-photo-428311.jpeg'
   },
   {
     username: 'Wilbert Bates',
     city: 'Barcelona',
     instruments: ['Vocals', 'Guitar'],
+    genres: ['Hip Hop', 'Ska'],
     pic_path: '/images/userimgs/pexels-photo-343717.jpeg'
   },
   {
     username: 'Kay Salazar',
     city: 'Barcelona',
     instruments: ['Drums'],
+    genres: ['Hip Hop'],
     pic_path: '/images/userimgs/pexels-photo-295564.jpeg'
   },
   {
     username: 'Kelli Curry',
     city: 'Barcelona',
     instruments: ['Drums'],
+    genres: ['Reggae', 'Ska'],
     pic_path: '/images/userimgs/pexels-photo-324030.jpeg'
   },
   {
     username: 'Kristi	Clayton',
     city: 'Barcelona',
     instruments: ['Drums', 'Tuba'],
+    genres: ['Electronic', 'Reggae'],
     pic_path: '/images/userimgs/pexels-photo-324658.jpeg'
   },
   {
     username: 'Carole	Collins',
     city: 'Barcelona',
     instruments: ['Saxophone', 'Guitar', 'Tuba'],
+    genres: ['Rock', 'Electronic'],
     pic_path: '/images/userimgs/pexels-photo-354951.jpeg'
   },
   {
     username: 'Stewart Blake',
     city: 'Barcelona',
     instruments: ['Drums', 'Keyboard', 'Oboe'],
+    genres: ['Indie', 'Jazz', 'Country'],
     pic_path: '/images/userimgs/pexels-photo-374871.jpeg'
   },
   {
     username: 'Sheldon Tyler',
     city: 'Barcelona',
     instruments: ['Saxophone', 'Keyboard'],
+    genres: ['Rock', 'Reggae', 'Jazz', 'Ska'],
     pic_path: '/images/userimgs/pexels-photo-375880.jpeg'
   },
   {
     username: 'Tyler Bowen',
     city: 'Barcelona',
     instruments: ['Saxophone', 'Trumpet'],
+    genres: ['Rock', 'Electronic', 'Hip Hop', 'Country'],
     pic_path: '/images/userimgs/startup-photo.jpg'
   },
 ];

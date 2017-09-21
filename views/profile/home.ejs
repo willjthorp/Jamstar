@@ -15,7 +15,7 @@
     <h2 class="center-align"><%= musician.username.toUpperCase() %></h2>
     <h3 class="center-align">City: <%= musician.city %></h3>
     <div class="links">
-      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a> | <a href="profile/<%= req.user._id %>/instruments/edit">Edit Instruments</a>
+      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a> | <a href="profile/<%= req.user._id %>/bio/edit">Edit Bio</a> | <a href="profile/<%= req.user._id %>/instruments/edit">Edit Instruments</a>
     </div>
   </div>
 
@@ -27,7 +27,16 @@
           <div class="divider"></div>
           <div class="section">
             <h4>Favourite Genres:</h4>
-            <p>Pop / Electronic / Indie</p>
+            <p>
+            <% if (musician.genres) { %>
+              <% for (i=0; i < musician.genres.length; i++) { %>
+                <%= musician.genres[i] %>
+                <% if (i !== (musician.genres.length - 1)) { %>
+                /
+                <% } %>
+              <% } %>
+            <% } %>
+          </p>
           </div>
           <div class="divider"></div>
           <div class="section">

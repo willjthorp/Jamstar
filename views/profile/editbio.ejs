@@ -1,0 +1,36 @@
+<div class="secondary-header">
+
+  <p>
+    <a href="/profile">< <span class="back">Return to profile</span></a>
+  </p>
+
+    <h3>Edit Bio</h3>
+
+</div>
+
+<div class="content-container">
+
+  <div class="top-container">
+    <div class="container offset-top">
+      <h4 class="center-align">Select your favourite genres</h4>
+
+      <form action="/profile/<%= user._id %>/bio/edit" method="POST" class="center-align">
+
+        <% for (key in genres) { %>
+          <div class="genre-card">
+            <input type="checkbox" name="genres" value="<%= genres[key] %>" id="<%= key %>" class="checkbox" <% if ((user.genres || []).indexOf(genres[key]) !== -1) { %> checked="checked" <% } %> />
+            <label for="<%= key %>">
+            <h3><%= genres[key] %></h3>
+            </label>
+          </div>
+        <% } %>
+
+
+    </div>
+  </div>
+
+  <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
+    <i class="material-icons right">send</i>
+  </button>
+
+</div>

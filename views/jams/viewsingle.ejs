@@ -1,7 +1,7 @@
 <div class="secondary-header">
 
   <p>
-    <a href="javascript:history.back()">< Back</a>
+    <a href="javascript:history.back()">< <span class="back">Back</span></a>
   </p>
 
     <h3>Jam info</h3>
@@ -14,11 +14,11 @@
     <div class="img-container-large">
       <img class="circle" src="<%= jam.pic_path %>">
     </div>
-    <h2 class="center-align"><%= jam.name.toUpperCase() %></h2>
-    <h3 class="center-align"><%= jam.description %></p>
-    <h3 class="center-align"><%= jam.date %></h3>
-    <h3 class="center-align"><%= jam.time %></h3>
-    <% if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) { %>
+    <h2 class="center-align"><% if (jam.name) { %><%= jam.name.toUpperCase() %><% } %></h2>
+    <h3 class="center-align"><% if (jam.description) { %><%= jam.description %><% } %></p>
+    <h3 class="center-align"><% if (jam.date) { %><%= jam.date %><% } %> | <% if (jam.time) { %><%= jam.time %><% } %></h3>
+    <h3 class="center-align"><% if (jam.genre) { %><%= jam.genre %><% } %> Jam</h3>
+    <% if (req.user && (JSON.stringify(jam.creator) === JSON.stringify(req.user._id))) { %>
       <div class="links">
         <a href="/jams/<%= jam._id %>/edit">Edit</a> | <a href="/jams/<%= jam._id %>/invite">Invite Musicians</a> | <a href="/jams/<%= jam._id %>/delete">Cancel Jam</a>
       </div>
@@ -29,10 +29,10 @@
           <button type="submit">Attend this jam</button>
         </form>
       </div>
-    <% } else { %>
+    <% } else if (req.user) { %>
       <div class="links">
         <form method="post" action="/jams/<%= jam._id %>/removeuser">
-          <input type="hidden" value="<%= req.user._id %>" name="removeAttendee">
+          <input type="hidden" value="<% if (req.user) { %><%= req.user._id %><% } %>" name="removeAttendee">
           <button type="submit">Can't make it?</button>
         </form>
       </div>

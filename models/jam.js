@@ -7,6 +7,7 @@ const JamSchema = Schema({
   date: String,
   time: String,
   description: String,
+  genre: String,
   pic_path: {type: String, default: '/images/jam-default.jpg'},
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
   attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }],
