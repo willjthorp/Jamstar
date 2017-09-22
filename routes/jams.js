@@ -146,7 +146,7 @@ jams.post('/:jamId/adduser', ensureLoggedIn(), (req, res, next) => {
     jam.attendees.push(req.user._id);
     var jamUpdate = {
       attendees: jam.attendees,
-      invited: jams.invited
+      invited: jam.invited
     };
     Jam.findByIdAndUpdate(jamId, jamUpdate, (err, jam) => {
       if (err) {
