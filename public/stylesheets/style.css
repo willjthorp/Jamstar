@@ -59,6 +59,10 @@ p {
   min-width: 300px
 }
 
+.select-wrapper input.select-dropdown {
+  color: #a8a8a8
+}
+
 
 /* -- forms --------------------------------------------------------------------------*/
 

@@ -44,14 +44,15 @@
           <input type="text" name="time" class="timepicker" value="<%= jam.time %>" required>
         </div>
 
-          <div class="input-field col s12 m5 jamgenre">
-            <select id="jamgenre" name="genre" value="<% if (jam.genre) { %><%= jam.genre %><% } %>">
-              <option value="1" disabled selected>Select Jam Genre</option>
-              <% for (key in genres) { %>
-                <option class="filter-opt" value="<%= genres[key] %>"><%= genres[key] %></option>
-              <% } %>
-            </select>
-          </div>
+            <div class="input-field col s12 m5" id="genreinput">
+              <select class="filter-opt" id="genrefilter">
+                <option value="1" disabled selected class="faded-text">Click to select jam genre</option>
+                <% for (key in genres) { %>
+                  <option class="filter-opt" value="<%= genres[key] %>"><%= genres[key] %></option>
+                <% } %>
+              </select>
+            </div>
+
 
         <div class="input-field col s12 margin-top">
           <textarea id="description" name="description" class="materialize-textarea" placeholder="Enter Jam Description (optional)"><%= jam.description %></textarea>

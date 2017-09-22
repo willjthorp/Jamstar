@@ -33,7 +33,7 @@ $(document).ready(function(){
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
-    closeOnSelect: true, // Close upon selecting a date,
+    closeOnSelect: false, // Close upon selecting a date,
     min: Date.now()
   });
 
@@ -44,9 +44,11 @@ $(document).ready(function(){
     donetext: 'OK', // text for done-button
     cleartext: 'Clear', // text for clear-button
     canceltext: 'Cancel', // Text for cancel-button
-    autoclose: true, // automatic close timepicker
+    autoclose: false, // automatic close timepicker
     ampmclickable: true, // make AM PM clickable
-    aftershow: function(){} //Function for after opening timepicker
+    aftershow: function(){
+      console.log("hello!");
+    } //Function for after opening timepicker
   });
 
    $('select').material_select();
