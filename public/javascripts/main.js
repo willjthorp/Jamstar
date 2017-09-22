@@ -1,4 +1,21 @@
 $(document).ready(function(){
+
+    $(window).scroll(function(){
+  		if ($(this).scrollTop() > 1000) {
+  			$('#back-to-top').fadeIn(600);
+  		} else {
+  			$('#back-to-top').fadeOut(600);
+  		}
+  	});
+
+  	//Click event to scroll to top
+  	$('#back-to-top').click(function(){
+  		$('html, body').animate( {scrollTop : 0}, 800);
+  		return false;
+  	});
+
+
+
     $('ul.tabs').tabs();
 
     $(".button-collapse").sideNav({
@@ -69,14 +86,15 @@ $(document).ready(function(){
  var currentGenre = $("#jamgenre option[selected='selected']").text();
  $(".jamgenre input").val(currentGenre);
 
- var options = [
-      {selector: '#back-to-top', offset: 400, callback: function(el) {
-        Materialize.showStaggeredList($(el));
-      } },
-    ];
-    Materialize.scrollFire(options);
-
 });
+
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+ document.body.scrollTop = 0;
+ document.documentElement.scrollTop = 0;
+}
+
 
 
 $('#jam-tab').on('click', function() {
