@@ -25,12 +25,21 @@
           </div>
         <% } %>
 
+        <h4 class="center-align">Edit your influences</h4>
+
+        <div class="input-field col s12 margin-top textarea">
+          <textarea id="influences" name="influences" class="materialize-textarea" placeholder="Enter some bands/artists..."><%= req.user.influences %></textarea>
+        </div>
 
     </div>
   </div>
 
+
+
   <button class="btn waves-effect waves-light margin-top btn-edit" type="submit" name="action">Save
     <i class="material-icons right">send</i>
   </button>
+
+  </form>
 
 </div>

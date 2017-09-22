@@ -14,9 +14,11 @@
     </div>
     <h2 class="center-align"><%= musician.username.toUpperCase() %></h2>
     <h3 class="center-align">City: <%= musician.city %></h3>
-    <div class="links">
-      <a href="profile/<%= req.user._id %>/edit">Edit Profile</a> | <a href="profile/<%= req.user._id %>/bio/edit">Edit Bio</a> | <a href="profile/<%= req.user._id %>/instruments/edit">Edit Instruments</a>
-    </div>
+    <ul class="links">
+      <li><a href="profile/<%= req.user._id %>/edit">Edit Profile</a> | </li>
+      <li><a href="profile/<%= req.user._id %>/bio/edit">Edit Bio</a> | </li>
+      <li><a href="profile/<%= req.user._id %>/instruments/edit">Edit Instruments</a></li>
+    </ul>
   </div>
 
   <div class="bottom-container">
@@ -41,7 +43,11 @@
           <div class="divider"></div>
           <div class="section">
             <h4>Influences:</h4>
-            <p>Glass Animals / Crystal Fighters / Alt-J / Vampire Weekend</p>
+            <p>
+            <% if (musician.influences) { %>
+                <%= musician.influences %>
+            <% } %>
+          </p>
           </div>
           <div class="divider"></div>
           <div class="section">

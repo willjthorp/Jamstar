@@ -5,6 +5,9 @@ const User = require("../models/user");
 const Venue = require("../models/venue");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+const instruments = require('../models/enums/instruments');
+const genres = require('../models/enums/genres');
+
 // Render new jam form
 jams.get('/new', ensureLoggedIn(), (req, res, next) => {
   Venue.find({}, (err, venues) => {
@@ -28,7 +31,6 @@ jams.post('/new', ensureLoggedIn(), (req, res, next) => {
   console.log('New Jam:', newJam);
   newJam.save((err, jam) => {
     if (err) {
-      console.log('ERRROR:', err);
       res.render("jams/new-location", { req, message: "Something went wrong" });
     } else {
       res.redirect(`/jams/${jam.id}/edit`);
@@ -41,12 +43,10 @@ jams.post('/new', ensureLoggedIn(), (req, res, next) => {
 jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
   const jamId = req.params.jamId;
     Jam.findById(jamId, (err, jam) => {
-      console.log(jam.creator);
-      console.log(req.user._id);
       if (err) {
         return next(err);
       } else if (JSON.stringify(jam.creator) === JSON.stringify(req.user._id)) {
-        res.render('jams/edit', {req, jam});
+        res.render('jams/edit', {req, jam, genres});
       } else {
         res.redirect(`/jams/${jamId}/view`);
       }
@@ -109,7 +109,7 @@ jams.get('/:jamId/invite', ensureLoggedIn(), (req, res, next) => {
         if (err) {
           return next(err);
         } else {
-            res.render('musicians/invite', {req, jam, musicians});
+            res.render('musicians/invite', {req, jam, musicians, instruments, genres});
         }
       });
     }

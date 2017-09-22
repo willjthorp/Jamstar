@@ -41,7 +41,7 @@
 
       <div>
         <label for="email">Edit Email</label>
-        <input type="text" class="form-control" name="email" id="email" value="<%= user.email %>">
+        <input type="text" class="form-control" name="email" id="email" placeholder="Enter email here..." value="<%= user.email %>" required>
       </div>
 
     </div>
@@ -51,7 +51,7 @@
     <i class="material-icons right">send</i>
   </button>
 
-  <div class="center-align">
+  <div class="center-align form-control">
     <a href="/profile/<%= req.user._id %>/delete">Delete Account</a>
   </div>
 

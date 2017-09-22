@@ -1,3 +1,6 @@
+require("dotenv").config();
+
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -21,7 +24,6 @@ const jams = require('./routes/jams');
 const musicians = require('./routes/musicians');
 const groups = require('./routes/groups');
 const api = require('./routes/api');
-require("dotenv").config();
 
 // Mongoose configuration
 mongoose.connect(process.env.MONGODB_URI);

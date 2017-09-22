@@ -1,8 +1,22 @@
+/* -- reset --------------------------------------------------------------------------*/
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+  flex: 1 0 auto;
+}
+
+/* -- typography --------------------------------------------------------------------------*/
 
 h2, h3, h4 {
   font-family: 'Quicksand', sans-serif;
@@ -23,22 +37,30 @@ a:hover {
   color: #0d5e91
 }
 
-.content-container {
-  padding-top: 60px;
+p {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.map-container {
-  width: 50%;
-  margin-bottom: 30px;
-  position: fixed;
-  height: 87vh;
-  padding-right: 15px;
+.section p {
+  font-size: 3rem;
 }
 
-#jam-venues-map, #jam-map {
-  width: 100%;
-  height: 100%;
+.btn {
+  margin: 10px auto;
+  font-family: 'Montserrat', sans-serif;
 }
+
+.social:hover {
+  color: white;
+  opacity: 0.7;
+}
+
+.social {
+  min-width: 300px
+}
+
+
+/* -- forms --------------------------------------------------------------------------*/
 
 .form-control {
   margin-bottom: 20px;
@@ -47,12 +69,13 @@ a:hover {
 .form-group {
   max-width: 600px;
   width: 85%;
-  margin: 40px auto 0 auto;
+  margin: 40px auto 20px auto;
   text-align: center;
-  padding: 20px 90px 20px 90px;
+  padding: 40px 90px 50px 90px;
   box-shadow: 4px 5px 20px -5px rgba(184,184,184,1);
   border-radius: 10px;
-  border: 1px solid #ebebeb
+  border: 1px solid #ebebeb;
+  background: white;
 }
 
 .form-group-wide {
@@ -65,18 +88,45 @@ a:hover {
 }
 
 .form-group h2 {
-  margin-bottom: 40px;
-  font-size: 4.5rem;
-}
-
-p {
-  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 50px;
+  font-size: 3.5rem;
 }
 
 .select-wrapper+label {
   font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
 }
+
+.file-field .btn {
+  float: none;
+  width: 100%;
+}
+
+.file-field .file-path-wrapper {
+   overflow: visible;
+   padding: 0;
+}
+
+.links button {
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: #039be5
+}
+
+.links li {
+  display: inline;
+}
+
+.links button:hover {
+  color: #0d5e91
+}
+
+
+
+
+
+/* -- navigation --------------------------------------------------------------------------*/
 
 nav, .nav-wrapper {
   background-color: #232323;
@@ -117,7 +167,6 @@ nav ul li:hover {
    background-color: rgba(0,0,0,0.9);
 }
 
-
 .secondary-header {
   height: 60px;
   background-color: white;
@@ -142,6 +191,29 @@ nav ul li:hover {
   font-size: 1.5rem;
 }
 
+.header-link {
+  font-size: 1.3rem;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0 30px;
+}
+
+.header-link:hover {
+  color: white;
+}
+
+/* -- footer --------------------------------------------------------------------------*/
+
+
+.page-footer {
+  background-color: #232323;
+  z-index: 10;
+  padding: 15px;
+}
+
+
+/* -- layout --------------------------------------------------------------------------*/
+
+
 .container {
   padding: 20px;
   margin-top: 20px;
@@ -153,35 +225,28 @@ nav ul li:hover {
   margin: 0 auto;
 }
 
-
-.account-container {
-  margin-top: -15px;
+.content-container {
+  padding-top: 60px;
 }
 
-.btn {
-  margin: 10px auto;
+.map-container {
+  width: 50%;
+  margin-bottom: 30px;
+  position: fixed;
+  height: 87vh;
+  padding-right: 15px;
 }
 
-.file-field .btn {
-  float: none;
+#jam-venues-map, #jam-map {
   width: 100%;
+  height: 100%;
 }
 
-.file-field .file-path-wrapper {
-   overflow: visible;
-   padding: 0;
-}
 
-.header-link {
-  font-size: 1.3rem;
-  font-family: 'Quicksand', sans-serif;
-  padding: 0 30px;
-}
 
-.header-link:hover {
-  color: white;
-}
 
+/* -- pages --------------------------------------------------------------------------*/
+/* -- pages / home*/
 
 .background-image {
   background-image: url('http://wallzoa.com/wp-content/uploads/2013/07/dj-concert-wallpapers.jpg');
@@ -258,6 +323,10 @@ nav ul li:hover {
   background-color: rgba(255,255,255, 0.1);
 }
 
+
+/* -- components --------------------------------------------------------------------------*/
+/* -- components / instruments*/
+
 .instruments-container {
   margin: 0 auto;
   text-align: center;
@@ -289,6 +358,15 @@ nav ul li:hover {
   text-align: center !important;
 }
 
+label, label .instrument-image-container, .instrument-card p {
+  opacity: 0.6;
+}
+
+input:checked ~ label, input:checked ~ p, input:checked ~ label > div {
+    opacity: 1;
+}
+
+
 .genre-card {
   display: inline-block;
   margin: 25px;
@@ -304,6 +382,10 @@ nav ul li:hover {
   display: none
 }
 
+
+
+// NOOOOOOOOOOOO!!!!!!!!!!!!!!!
+
 .margin-right {
   margin-right: 20px;
 }
@@ -316,6 +398,9 @@ nav ul li:hover {
   margin-top: -30px;
 }
 
+
+/* -- components / jam cards*/
+
 .jam-info {
   border: 1px solid black;
   padding: 10px;
@@ -325,6 +410,8 @@ nav ul li:hover {
 .jams-container {
   margin-top: 30px;
 }
+
+/* -- components / images*/
 
 .img-container, .img-container-small  {
   margin: auto;
@@ -369,11 +456,11 @@ nav ul li:hover {
   margin: 10px auto;
 }
 
-/*.img-container-small {
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-}*/
+
+.hoverable {
+  cursor: pointer;
+}
+
 
 .small-user-card:hover {
   opacity: 0.7;
@@ -389,12 +476,8 @@ img {
   width: 100px;
   transition: opacity 400ms ease;
   vertical-align: top;
-}
 
-.section p {
-  font-size: 3rem;
 }
-
 .first-jam-input {
   display: none;
 }
@@ -415,7 +498,8 @@ textarea {
 
 .top-container h4 {
   font-size: 2rem;
-  padding: 30px 0;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
 .links {
@@ -496,16 +580,9 @@ textarea {
   overflow: auto;
 }
 
-.links button {
-  font-family: 'Quicksand', sans-serif;
-  border: none;
-  background-color: rgba(0,0,0,0);
-  color: #039be5
-}
 
-.links button:hover {
-  color: #0d5e91
-}
+
+/* -- responsive --------------------------------------------------------------------------*/
 
 @media (max-width: 992px) {
   .map-container {
@@ -560,5 +637,19 @@ textarea {
 @media only screen and (max-width: 992px) {
   .map-container {
     height: 300px;
+  }
+
+  .card.horizontal, form p {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card .card-content {
+    padding-top: 0;
+    overflow: hidden;
+  }
+
+  .profile-img-container {
+    margin: 15px auto;
   }
 }

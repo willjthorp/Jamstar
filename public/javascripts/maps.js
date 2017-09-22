@@ -35,7 +35,7 @@ function setJamMarkers(map, markers) {
     });
     var contentString = "Some content";
     google.maps.event.addListener(marker, "click", function() {
-      infowindow.setContent('<h3>' + this.name + '</h3><p>' + this.venue + '</p><p>' + this.date + '</p><p>' + this.time + `</p><a href="/jams/${this.id}/view">View info</a>`);
+      infowindow.setContent(`<h3>${this.venue}</h3><p>${this.venue}</p><p>${this.date}</p><p>${this.time}</p><a href="/jams/${this.id}/view">View info</a>`);
       infowindow.open(map, this);
     });
   }

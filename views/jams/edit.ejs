@@ -47,16 +47,9 @@
           <div class="input-field col s12 m5 jamgenre">
             <select id="jamgenre" name="genre" value="<% if (jam.genre) { %><%= jam.genre %><% } %>">
               <option value="1" disabled selected>Select Jam Genre</option>
-              <option class="filter-opt" value="Pop">Pop</option>
-              <option class="filter-opt" value="Rock">Rock</option>
-              <option class="filter-opt" value="Indie">Indie</option>
-              <option class="filter-opt" value="Electronic">Electronic</option>
-              <option class="filter-opt" value="Classical">Classical</option>
-              <option class="filter-opt" value="Reggae">Reggae</option>
-              <option class="filter-opt" value="Hip Hop">Hip Hop</option>
-              <option class="filter-opt" value="Jazz">Jazz</option>
-              <option class="filter-opt" value="Country">Country</option>
-              <option class="filter-opt" value="Ska">Ska</option>
+              <% for (key in genres) { %>
+                <option class="filter-opt" value="<%= genres[key] %>"><%= genres[key] %></option>
+              <% } %>
             </select>
           </div>
 
@@ -68,7 +61,7 @@
           <div class="error-message">
             <%= message %>
           </div>
-          <% } %>
+        <% } %>
 
     </div>
   </div>

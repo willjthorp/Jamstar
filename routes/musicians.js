@@ -4,6 +4,9 @@ const Jam = require("../models/jam");
 const User = require("../models/user");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+const instruments = require('../models/enums/instruments');
+const genres = require('../models/enums/genres');
+
 // View all muscians
 musicians.get('/view', (req, res, next) => {
   if (req.user) {
@@ -11,7 +14,7 @@ musicians.get('/view', (req, res, next) => {
       if (err) {
         return next(err);
       } else {
-          res.render('musicians/viewall', { req, musicians });
+          res.render('musicians/viewall', { req, musicians, genres, instruments });
       }
     });
   } else {
@@ -19,7 +22,7 @@ musicians.get('/view', (req, res, next) => {
       if (err) {
         return next(err);
       } else {
-          res.render('musicians/viewall', { req, musicians });
+          res.render('musicians/viewall', { req, musicians, genres, instruments });
       }
     });
   }

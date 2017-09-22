@@ -19,6 +19,7 @@ const UserSchema = Schema({
     type: Array,
     items: String
   },
+  influences: String,
   pic_path: {
     type: String,
     default: '/images/profile-default.jpg'

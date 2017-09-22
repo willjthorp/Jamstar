@@ -2,12 +2,15 @@
 
   <p>
     <a href="javascript:history.back()">
-      < <span class="back">Back</span></a>
+      < <span class="back">Back</span>
+    </a>
   </p>
 
   <h3>Search Musicians</h3>
 
 </div>
+
+<div class
 
 <div class="content-container">
 
@@ -19,40 +22,22 @@
         <div class="input-field col s12 m5" id="genreinput">
           <select class="filter-opt" id="genrefilter">
             <option value="1" disabled selected>Choose your option</option>
-            <option class="filter-opt" value="Pop">Pop</option>
-            <option class="filter-opt" value="Rock">Rock</option>
-            <option class="filter-opt" value="Indie">Indie</option>
-            <option class="filter-opt" value="Electronic">Electronic</option>
-            <option class="filter-opt" value="Classical">Classical</option>
-            <option class="filter-opt" value="Reggae">Reggae</option>
-            <option class="filter-opt" value="Hip Hop">Hip Hop</option>
-            <option class="filter-opt" value="Jazz">Jazz</option>
-            <option class="filter-opt" value="Country">Country</option>
-            <option class="filter-opt" value="Ska">Ska</option>
+            <% for (key in genres) { %>
+              <option class="filter-opt" value="<%= genres[key] %>"><%= genres[key] %></option>
+            <% } %>
           </select>
           <label>Filter by Genre</label>
         </div>
 
-          <div class="input-field col s12 m5" id="instinput">
-            <select class="filter-opt" id="instfilter">
+        <div class="input-field col s12 m5" id="instinput">
+          <select class="filter-opt" id="instfilter">
               <option value="1" disabled selected>Choose your option</option>
-              <option class="filter-opt" value="Piano">Piano</option>
-              <option class="filter-opt" value="Electric Guitar">Electric Guitar</option>
-              <option class="filter-opt" value="Drums">Drums</option>
-              <option class="filter-opt" value="Saxophone">Saxophone</option>
-              <option class="filter-opt" value="Guitar">Guitar</option>
-              <option class="filter-opt" value="Violin">Violin</option>
-              <option class="filter-opt" value="Bass Guitar">Bass Guitar</option>
-              <option class="filter-opt" value="Clarinet">Clarinet</option>
-              <option class="filter-opt" value="Flute">Flute</option>
-              <option class="filter-opt" value="Tuba">Tuba</option>
-              <option class="filter-opt" value="Keyboard">Keyboard</option>
-              <option class="filter-opt" value="Trumpet">Trumpet</option>
-              <option class="filter-opt" value="Trombone">Trombone</option>
-              <option class="filter-opt" value="Oboe">Oboe</option>
+              <% for (key in instruments) { %>
+                <option class="filter-opt" value="<%= instruments[key] %>"><%= instruments[key] %></option>
+              <% } %>
             </select>
-            <label>Filter by Instruments</label>
-          </div>
+          <label>Filter by Instruments</label>
+        </div>
 
         <div class="col s12 m2">
           <button class="btn filter-btn">Clear</button>
@@ -61,15 +46,15 @@
 
       <div class="col s12 m7">
         <% for (i=0; i < musicians.length; i++) { %>
-          <div class="card horizontal hoverable">
+          <div class="card horizontal hoverable musician">
             <div class="profile-img-container" style="background-image: url(<%= musicians[i].pic_path %>)"></div>
             <div class="card-stacked">
               <div class="card-content">
                 <h2><%= musicians[i].username %></h3>
-              <p>
+                <p>
                 <%= musicians[i].city %>
-              </p>
-              <span class="instruments-list-text">
+                </p>
+                <span class="instruments-list-text">
                 <% for (j=0; j < musicians[i].instruments.length; j++) { %>
                   <%= musicians[i].instruments[j] %> |
                 <% } %>

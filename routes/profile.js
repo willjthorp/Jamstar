@@ -102,12 +102,13 @@ profile.get('/:userId/bio/edit', ensureLoggedIn(), (req, res, next) => {
   }
 });
 
-// Save edited intruments page
+// Save edited bio page
 profile.post('/:userId/bio/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.userId;
 
   var bioUpdate = {
     genres: req.body.genres,
+    influences: req.body.influences
   };
 
   if (req.user._id == userId) {

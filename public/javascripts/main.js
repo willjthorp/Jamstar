@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     $(".dropdown-button").dropdown({
       belowOrigin: true,
-      hover: true
+      // hover: true
     });
 
     $('.datepicker').pickadate({
@@ -38,7 +38,7 @@ $(document).ready(function(){
    var input = $('#instfilter').val();
 
    if (input) {
-   $('.instruments-list-text').each(function(index) {
+   $('.instruments-list-text').each(function() {
      if ($(this).text().indexOf(input) >= 0 && (genreinput === null || $(this).siblings('.genre-list').text().indexOf(genreinput) >= 0)) {
          $(this).parents().eq(2).show();
      } else {
@@ -48,7 +48,7 @@ $(document).ready(function(){
   }
 
   if (genreinput) {
-   $('.genre-list').each(function(index) {
+   $('.genre-list').each(function() {
      if ($(this).text().indexOf(genreinput) >= 0 && (input === null || $(this).siblings('.instruments-list-text').text().indexOf(input) >= 0)) {
          $(this).parents().eq(2).show();
      } else {
@@ -68,6 +68,13 @@ $(document).ready(function(){
  });
  var currentGenre = $("#jamgenre option[selected='selected']").text();
  $(".jamgenre input").val(currentGenre);
+
+ var options = [
+      {selector: '#back-to-top', offset: 400, callback: function(el) {
+        Materialize.showStaggeredList($(el));
+      } },
+    ];
+    Materialize.scrollFire(options);
 
 });
 
@@ -94,7 +101,7 @@ function goBack() {
     window.history.back();
 }
 
-$('#instinput').on('change', function () {
+$('#instfilter').on('change', function () {
     var genreinput = $('#genrefilter').val();
     var input = $('#instfilter').val();
     $('.instruments-list-text').each(function(index) {
@@ -129,4 +136,8 @@ $('.filter-btn').on('click', function (e) {
     select.material_select();
     $('#genrefilter').val(null);
     $('#instfilter').val(null);
+});
+
+$('.venue, .musician').on('click', function() {
+  window.location = $(this).find('a').attr('href');
 });
