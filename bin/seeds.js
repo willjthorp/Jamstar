@@ -1,3 +1,9 @@
+/*jshint esversion: 6 */
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
+const Venue = require('../models/venue');
+const User = require('../models/user');
+
 
 
 const venues = [
@@ -215,3 +221,12 @@ const users = [
     pic_path: '/images/userimgs/startup-photo.jpg'
   }
 ];
+
+
+User.create(users, (err)=>{
+  if (err) { throw (err); }
+  Venue.create(venues, (err)=> {
+    if (err) { throw (err); }
+      mongoose.connection.close();
+  });
+});
