@@ -201,6 +201,12 @@ nav ul li:hover {
   color: white;
 }
 
+.btn-floating.btn-large {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
 /* -- footer --------------------------------------------------------------------------*/
 
 
@@ -213,6 +219,11 @@ nav ul li:hover {
 
 /* -- layout --------------------------------------------------------------------------*/
 
+.fullscreen-container {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+}
 
 .container {
   padding: 20px;
@@ -268,9 +279,9 @@ nav ul li:hover {
   font-family: 'Quicksand', sans-serif;
   width: 90%;
   max-width: 1000px;
-  margin: 100px auto;
+  margin: auto;
   padding: 40px;
-  position: relative;
+  /*position: relative;*/
   z-index: 2;
 }
 
@@ -382,9 +393,6 @@ input:checked ~ label, input:checked ~ p, input:checked ~ label > div {
   display: none
 }
 
-
-
-// NOOOOOOOOOOOO!!!!!!!!!!!!!!!
 
 .margin-right {
   margin-right: 20px;
@@ -607,17 +615,12 @@ textarea {
 
 
 @media only screen and (max-width: 660px) {
-
   .back {
     display: none;
   }
 
   .homecontent h1 {
     font-size: 5rem;
-  }
-
-  .logocontainer .fa-star-o {
-    font-size: 4rem;
   }
 
   .logocontainer {
@@ -631,8 +634,32 @@ textarea {
   .homecontent a {
     width: 70%;
   }
+
+  .form-group {
+    padding: 40px 30px;
+  }
+
+  .social {
+    min-width: 230px;
+    padding: 0 10px;
+  }
 }
 
+
+@media only screen and (max-width: 580px) {
+  .form-group {
+    padding: 40px 10px;
+  }
+
+  .social {
+    min-width: 230px;
+    padding: 0 10px;
+  }
+
+  .side-nav {
+    width: 220px;
+  }
+}
 
 @media only screen and (max-width: 992px) {
   .map-container {
@@ -644,6 +671,10 @@ textarea {
     text-align: center;
   }
 
+  .instruments-list .instrument-image-container-tiny {
+    margin: 10px 10px 20px 10px
+  }
+
   .card .card-content {
     padding-top: 0;
     overflow: hidden;
@@ -651,5 +682,28 @@ textarea {
 
   .profile-img-container {
     margin: 15px auto;
+  }
+
+  .homecontent h1 {
+   font-size: 3rem;
+  }
+
+  .logocontainer .fa-star-o {
+    font-size: 3rem;
+  }
+
+  .homecontent h3 {
+    font-size: 1.5rem;
+  }
+  .homecontent a {
+    font-size: 1rem;
+  }
+
+  .page-footer p {
+    font-size: 0.7rem;
+  }
+
+  .homecontent {
+    margin: auto;
   }
 }
