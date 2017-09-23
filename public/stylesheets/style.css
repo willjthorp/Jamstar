@@ -136,6 +136,7 @@ nav, .nav-wrapper {
   background-color: #232323;
   height: 64px;
   line-height: 64px;
+  overflow: hidden;
 }
 
 .nav-wrapper {
