@@ -79,7 +79,7 @@ function showVenueMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'http://jamstar.herokuapp.com/api/venues',
+    url: 'https://jamstar.herokuapp.com/api/venues',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -103,7 +103,7 @@ function showAllJamMarkers() {
   });
 
   $.ajax({
-    url: 'http://jamstar.herokuapp.com/api/jams',
+    url: 'https://jamstar.herokuapp.com/api/jams',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -126,7 +126,7 @@ function showMyJamMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'http://jamstar.herokuapp.com/api/myjams',
+    url: 'https://jamstar.herokuapp.com/api/myjams',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -149,7 +149,7 @@ function showInvitedMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'http://jamstar.herokuapp.com/api/myinvited',
+    url: 'https://jamstar.herokuapp.com/api/myinvited',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -172,7 +172,7 @@ function showAttendingMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'http://jamstar.herokuapp.com/api/myattending',
+    url: 'https://jamstar.herokuapp.com/api/myattending',
     method: 'GET',
     success: function(response) {
       var markers = [];
