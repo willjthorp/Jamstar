@@ -31,8 +31,8 @@ auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
 // Facebook signup
 auth.get("/login/facebook", ensureLoggedOut(), passport.authenticate("facebook"));
 auth.get("/login/facebook/callback", ensureLoggedOut(), passport.authenticate("facebook", {
-  successRedirect: "/profile",
-  failureRedirect: "/"
+  failureRedirect: "https://jamstar.herokuapp.com/",
+  successRedirect: "https://jamstar.herokuapp.com/profile"
 }));
 
 // Google sign up
