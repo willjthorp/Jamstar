@@ -611,8 +611,8 @@ textarea {
 
 @media only screen and (min-width: 101px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-      height: 62px;
-      line-height: 62px;
+      height: 64px;
+      line-height: 64px;
   }
 }
 
