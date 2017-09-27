@@ -42,8 +42,8 @@ auth.get("/login/google", ensureLoggedOut(), passport.authenticate("google", {
 }));
 
 auth.get("/login/google/callback", ensureLoggedOut(), passport.authenticate("google", {
-  failureRedirect: "/",
-  successRedirect: "/profile"
+  failureRedirect: "https://jamstar.herokuapp.com/",
+  successRedirect: "https://jamstar.herokuapp.com/profile"
 }));
 
 module.exports = auth;

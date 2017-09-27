@@ -3,6 +3,8 @@ const jams       = express.Router();
 const Jam = require("../models/jam");
 const User = require("../models/user");
 const Venue = require("../models/venue");
+const multer         = require('multer');
+const upload         = multer({ dest: './public/uploads/' });
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const instruments = require('../models/enums/instruments');
@@ -55,7 +57,7 @@ jams.get('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
 
 
 // Save edited jam info
-jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
+jams.post('/:jamId/edit', ensureLoggedIn(),  upload.single('jam-pic'), (req, res, next) => {
   const jamId = req.params.jamId;
   let updates = {
     name: req.body.name,
@@ -64,6 +66,9 @@ jams.post('/:jamId/edit', ensureLoggedIn(), (req, res, next) => {
     genre: req.body.genre,
     description: req.body.description
   };
+  if (req.file) {
+    updates.pic_path = `/uploads/${req.file.filename}`;
+  }
   Jam.findByIdAndUpdate(jamId, updates, (err, jam) => {
     if (err) {
       return next(err);

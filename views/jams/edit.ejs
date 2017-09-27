@@ -17,7 +17,7 @@
         <img class="circle" src="<%= jam.pic_path %>">
       </div>
 
-      <form action="/jams/<%= jam._id %>/edit" method="POST">
+      <form action="/jams/<%= jam._id %>/edit" method="POST" enctype="multipart/form-data">
 
         <div class="file-field input-field center-align">
             <div class="btn">
