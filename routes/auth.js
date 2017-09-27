@@ -31,8 +31,8 @@ auth.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
 // Facebook signup
 auth.get("/login/facebook", ensureLoggedOut(), passport.authenticate("facebook"));
 auth.get("/login/facebook/callback", ensureLoggedOut(), passport.authenticate("facebook", {
-  failureRedirect: "https://jamstar.herokuapp.com/",
-  successRedirect: "https://jamstar.herokuapp.com/profile"
+  failureRedirect: "https://localhost:3000/",
+  successRedirect: "https://localhost:3000/profile"
 }));
 
 // Google sign up
@@ -42,8 +42,8 @@ auth.get("/login/google", ensureLoggedOut(), passport.authenticate("google", {
 }));
 
 auth.get("/login/google/callback", ensureLoggedOut(), passport.authenticate("google", {
-  failureRedirect: "https://jamstar.herokuapp.com/",
-  successRedirect: "https://jamstar.herokuapp.com/profile"
+  failureRedirect: "https://localhost:3000/",
+  successRedirect: "https://localhost:3000/profile"
 }));
 
 module.exports = auth;
