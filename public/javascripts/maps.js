@@ -79,7 +79,7 @@ function showVenueMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'https://localhost:3000/api/venues',
+    url: 'localhost:3000/api/venues',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -103,7 +103,7 @@ function showAllJamMarkers() {
   });
 
   $.ajax({
-    url: 'https://localhost:3000/api/jams',
+    url: 'localhost:3000/api/jams',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -126,7 +126,7 @@ function showMyJamMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'https://localhost:3000/api/myjams',
+    url: 'localhost:3000/api/myjams',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -149,7 +149,7 @@ function showInvitedMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'https://localhost:3000/api/myinvited',
+    url: 'localhost:3000/api/myinvited',
     method: 'GET',
     success: function(response) {
       var markers = [];
@@ -172,7 +172,7 @@ function showAttendingMarkers() {
     center: ironhackBCN
   });
   $.ajax({
-    url: 'https://localhost:3000/api/myattending',
+    url: 'localhost:3000/api/myattending',
     method: 'GET',
     success: function(response) {
       var markers = [];
