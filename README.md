@@ -1,6 +1,6 @@
 ## Jamstar
 
-Jamstar is a back-end driven Node/ExpressJS responsive web application used to connect musicians and organise sessions to play together.
+Jamstar is a Node / Express responsive web application used to connect musicians and organise sessions to play together.
 
 View the app here: https://jamstar.herokuapp.com/
 
@@ -22,9 +22,9 @@ View the app here: https://jamstar.herokuapp.com/
 
 ### Tehcnologies used
 
-  - Node.js
+  - Node JS
   
-  - Express
+  - Express JS
   
   - Mongo DB
   
