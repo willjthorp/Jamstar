@@ -4,6 +4,7 @@ Jamstar is a back-end driven Node/ExpressJS responsive web application used to c
 
 View the app here: https://jamstar.herokuapp.com/
 
+ ---
 
 ### App features
 
